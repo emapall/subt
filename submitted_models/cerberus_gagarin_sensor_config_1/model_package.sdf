@@ -1,12 +1,12 @@
 <?xml version="1.0"?>
 <sdf version="1.6">
     <model name="GAGARIN">
-        <pose>0 0 0.121078 0 0 0</pose>
+        <pose>0 0 1 0 0 0</pose>
         <link name="base_link">
             <pose frame="">0 0 0 0 -0 0</pose>
             <inertial>
                 <pose frame="">0 0 0 0 -0 0</pose>
-                <mass>3.76</mass> <!--4.10-->
+                <mass>2.316</mass> <!--4.10-->
                 <inertia>
                     <ixx>0.017</ixx>
                     <ixy>0</ixy>
@@ -17,43 +17,47 @@
                 </inertia>
             </inertial>
             <collision name="base_link_inertia_collision">
-                <pose frame="">0 0 0 0 -0 0</pose>
+                <pose frame="">0 0 -0.224935 0 0 0</pose>
                 <geometry>
                     <box>
-                        <size>0.82 0.82 0.375</size>
+                        <size> 0.5 0.5 0.4 </size>
                     </box>
+                    <!-- <mesh>
+                        <scale>1 1 1</scale>
+                        <uri>package://cerberus_gagarin_sensor_config_1/meshes/gagarin.stl</uri>
+                    </mesh> -->
                 </geometry>
             </collision>
             <visual name="base_link_inertia_visual">
-                <pose frame="">0 0 0 0 -0 0</pose>
+                <pose frame="">0 0 -0.224935 0 0 0</pose>
                 <geometry>
                     <mesh>
                         <scale>1 1 1</scale>
-                        <uri>package://meshes/gagarin.dae</uri>
+                        <uri>package://cerberus_gagarin_sensor_config_1/meshes/gagarin.dae</uri>
                     </mesh>
                 </geometry>
             </visual>
 
             <visual name="left_flashlight_led">
-                <pose frame="">0.247592 0.24728 -0.017556 0 0 2.35619</pose>
+                <pose frame="">0.17757 0.17757 -0.017556 0 0 2.35619</pose>
                 <geometry>
                     <mesh>
                         <scale>1 1 1</scale>
-                        <uri>package://meshes/cree_xhp70.dae</uri>
+                        <uri>package://cerberus_gagarin_sensor_config_1/meshes/cree_xhp70.dae</uri>
                     </mesh>
                 </geometry>
             </visual>
             <visual name="right_flashlight_led">
-                <pose frame="">0.247592 -0.24728 -0.017556 0 0 0.785398</pose>
+                <pose frame="">0.17757 -0.17757 -0.017556 0 0 0.785398</pose>
                 <geometry>
                     <mesh>
                         <scale>1 1 1</scale>
-                        <uri>package://meshes/cree_xhp70.dae</uri>
+                        <uri>package://cerberus_gagarin_sensor_config_1/meshes/cree_xhp70.dae</uri>
                     </mesh>
                 </geometry>
             </visual>
             <light name="left_light_source" type="spot">
-                <pose frame="">0.15 0.2 0.07 3.131592653589795 -1.5107899999999999 -3.741592653589791</pose>
+                <pose frame="">0.17757 0.17757 0.07 3.131592653589795 -1.5107899999999999 -3.741592653589791</pose>
                 <attenuation>
                     <range>15</range>
                     <linear>0</linear>
@@ -71,7 +75,7 @@
                 <cast_shadows>1</cast_shadows>
             </light>
             <light name="right_light_source" type="spot">
-                <pose frame="">0.15 -0.2 0.07 3.131592653589795 -1.5107899999999999 3.741592653589791</pose>
+                <pose frame="">0.17757 -0.17757 0.07 3.131592653589795 -1.5107899999999999 3.741592653589791</pose>
                 <attenuation>
                     <range>15</range>
                     <linear>0</linear>
@@ -184,7 +188,7 @@
             </sensor>
 
             <visual name="camera_visual">
-                <pose>0.172 0 -0.023 0 0.174533 0</pose>
+                <pose>0.22 0 0.03 0 0 0</pose>
                 <geometry>
                     <box>
                         <size>0.02 0.025 0.025</size>
@@ -192,21 +196,18 @@
                 </geometry>
             </visual>
             <sensor name="camera_front" type="camera">
-                <pose>0.172 0 -0.023 0 0.174533 0</pose>
+                <pose>0.23 0 0.03 0 0 0</pose>
                 <always_on>1</always_on>
                 <update_rate>20</update_rate>
                 <camera name="camera_front">
                     <horizontal_fov>2.0944</horizontal_fov>
                     <lens>
                         <intrinsics>
-                            <!-- fx = fy = width / ( 2 * tan (hfov / 2 ) ) -->
-                            <fx>415.7</fx>
-                            <fy>415.7</fy>
-                            <!-- cx = ( width + 1 ) / 2 -->
-                            <cx>720.5</cx>
-                            <!-- cy = ( height + 1 ) / 2 -->
-                            <cy>540.5</cy>
-                            <s>0</s>
+                            <fx>1108.952913</fx>
+                            <fy>1110.658360</fy>
+                            <cx>729.533992</cx>
+                            <cy>544.985715</cy>
+                            <s>1</s>
                         </intrinsics>
                     </lens>
                     <distortion>
@@ -218,13 +219,13 @@
                         <center>0.5 0.5</center>
                     </distortion>
                     <image>
-                        <width>1280</width>
-                        <height>960</height>
+                        <width>1440</width>
+                        <height>1080</height>
                         <format>R8G8B8</format>
                     </image>
                     <clip>
-                        <near>0.01</near>
-                        <far>300</far>
+                        <near>0.02</near>
+                        <far>100</far>
                     </clip>
                     <noise>
                         <type>gaussian</type>
@@ -234,41 +235,40 @@
                 </camera>
             </sensor>
             <visual name="laser_visual">
-                <pose>0 0 0.05 0 0 0</pose>
+                <pose>0 0 -0.05 3.14159 0 0</pose>
                 <geometry>
                     <cylinder>
-                        <radius>0.03</radius>
-                        <length>0.1</length>
+                        <radius>0.04041</radius>
+                        <length>0.07350</length>
                     </cylinder>
                 </geometry>
             </visual>
             <sensor name="front_laser" type="gpu_ray">
-				<!-- The laser is patterned off of the X1 medium range lidar.  
-					We believe this is based on a Velodyne Puck Lite 
+				<!-- The laser is patterned off of the OS1-16 lidar.
 					which weighs 590 g -->
-                <pose>0 0 0.05 0 0 0</pose>
+                <pose>0 0 -0.05 3.14159 0 0</pose>
                 <update_rate>10</update_rate>
                 <lidar>
                     <scan>
                         <horizontal>
                             <!-- Resolution can't be above 16k, see
                             https://bitbucket.org/ignitionrobotics/ign-sensors/issues/8 -->
-                            <samples>10000</samples>
-                            <resolution>0.1</resolution>
-                            <min_angle>-3.1459</min_angle>
-                            <max_angle>3.1459</max_angle>
+                            <samples>512</samples>
+                            <resolution>1</resolution>
+                            <min_angle>-3.14159</min_angle>
+                            <max_angle>3.14159</max_angle>
                         </horizontal>
                         <vertical>
                             <samples>16</samples>
                             <resolution>1</resolution>
-                            <min_angle>-0.261799</min_angle>
-                            <max_angle>0.261799</max_angle>
+                            <min_angle>-0.2897247</min_angle>
+                            <max_angle>0.2897247</max_angle>
                         </vertical>
                     </scan>
                     <range>
-                        <min>0.05</min>
-                        <max>100</max>
-                        <resolution>0.01</resolution>
+                        <min>0.80</min>
+                        <max>120</max>
+                        <resolution>0.03</resolution>
                     </range>
                     <noise>
                         <type>gaussian</type>
@@ -277,9 +277,42 @@
                     </noise>
                 </lidar>
             </sensor>
+            <sensor name="picoflexx" type="gpu_ray">
+				<!-- The laser is patterned off of the picoflexx sensor.-->
+                <pose>0 0 0.04 0 -1.5708 0</pose>
+                <update_rate>5</update_rate>
+                <lidar>
+                    <scan>
+                        <horizontal>
+                            <!-- Resolution can't be above 16k, see
+                            https://bitbucket.org/ignitionrobotics/ign-sensors/issues/8 -->
+                            <samples>224</samples>
+                            <resolution>1</resolution>
+                            <min_angle>-0.541052</min_angle>
+                            <max_angle>0.541052</max_angle>
+                        </horizontal>
+                        <vertical>
+                            <samples>171</samples>
+                            <resolution>1</resolution>
+                            <min_angle>-0.785398</min_angle>
+                            <max_angle>0.785398</max_angle>
+                        </vertical>
+                    </scan>
+                    <range>
+                        <min>0.50</min>
+                        <max>4.0</max>
+                        <resolution>0.01</resolution>
+                    </range>
+                    <noise>
+                        <type>gaussian</type>
+                        <mean>0</mean>
+                        <stddev>0.01</stddev>
+                    </noise>
+                </lidar>
+            </sensor>
         </link>
         <link name="rotor_0">
-            <pose frame="">0.2263 -0.2263 0.038 0 0 0</pose>
+            <pose frame="">0.1 -0.1 -0.035 0 0 0</pose>
             <inertial>
                 <pose frame="">0 0 0 0 -0 0</pose>
                 <mass>0.005</mass>
@@ -292,29 +325,12 @@
                     <izz>8.22545e-05</izz>
                 </inertia>
             </inertial>
-            <collision name="rotor_0_collision">
-                <pose frame="">0 0 0 0 -0 0</pose>
-                <geometry>
-                    <cylinder>
-                        <length>0.005</length>
-                        <radius>0.175</radius>
-                    </cylinder>	
-                </geometry>
-                <surface>
-                    <contact>
-                        <ode/>
-                    </contact>
-                    <friction>
-                        <ode/>
-                    </friction>
-                </surface>
-            </collision>
             <visual name="rotor_0_visual">
                 <pose frame="">0 0 0 0 -0 0</pose>
                 <geometry>
                     <mesh>
-                        <scale>0.175 0.175 0.175</scale>
-                        <uri>package://meshes/m100_propeller_ccw.dae</uri>
+                        <scale>0.06 0.06 0.06</scale>
+                        <uri>package://cerberus_gagarin_sensor_config_1/meshes/propeller_ccw.dae</uri>
                     </mesh>
                 </geometry>
                 <material>
@@ -346,7 +362,7 @@
             </axis>
         </joint>
         <link name="rotor_1">
-            <pose frame="">-0.2263 0.2263 0.038 0 0 0</pose>
+            <pose frame="">-0.1 0.1 -0.035 0 0 0</pose>
             <inertial>
                 <pose frame="">0 0 0 0 -0 0</pose>
                 <mass>0.005</mass>
@@ -359,29 +375,12 @@
                     <izz>8.22545e-05</izz>
                 </inertia>
             </inertial>
-            <collision name="rotor_1_collision">
-                <pose frame="">0 0 0 0 -0 0</pose>
-                <geometry>
-                    <cylinder>
-                        <length>0.005</length>
-                        <radius>0.175</radius>
-                    </cylinder>
-                </geometry>
-                <surface>
-                    <contact>
-                        <ode/>
-                    </contact>
-                    <friction>
-                        <ode/>
-                    </friction>
-                </surface>
-            </collision>
             <visual name="rotor_1_visual">
                 <pose frame="">0 0 0 0 -0 0</pose>
                 <geometry>
                     <mesh>
-                        <scale>0.175 0.175 0.175</scale>
-                        <uri>package://meshes/m100_propeller_ccw.dae</uri>
+                        <scale>0.06 0.06 0.06</scale>
+                        <uri>package://cerberus_gagarin_sensor_config_1/meshes/propeller_ccw.dae</uri>
                     </mesh>
                 </geometry>
                 <material>
@@ -413,7 +412,7 @@
             </axis>
         </joint>
         <link name="rotor_2">
-            <pose frame="">0.2263 0.2263 0.038 0 0 0</pose>
+            <pose frame="">0.1 0.1 -0.035 0 0 0</pose>
             <inertial>
                 <pose frame="">0 0 0 0 -0 0</pose>
                 <mass>0.005</mass>
@@ -426,29 +425,12 @@
                     <izz>8.22545e-05</izz>
                 </inertia>
             </inertial>
-            <collision name="rotor_2_collision">
-                <pose frame="">0 0 0 0 -0 0</pose>
-                <geometry>
-                    <cylinder>
-                        <length>0.005</length>
-                        <radius>0.175</radius>
-                    </cylinder>
-                </geometry>
-                <surface>
-                    <contact>
-                        <ode/>
-                    </contact>
-                    <friction>
-                        <ode/>
-                    </friction>
-                </surface>
-            </collision>
             <visual name="rotor_2_visual">
                 <pose frame="">0 0 0 0 -0 0</pose>
                 <geometry>
                     <mesh>
-                        <scale>0.175 0.175 0.175</scale>
-                        <uri>package://meshes/m100_propeller_cw.dae</uri>
+                        <scale>0.06 0.06 0.06</scale>
+                        <uri>package://cerberus_gagarin_sensor_config_1/meshes/propeller_cw.dae</uri>
                     </mesh>
                 </geometry>
                 <material>
@@ -480,7 +462,7 @@
             </axis>
         </joint>
         <link name="rotor_3">
-            <pose frame="">-0.2263 -0.2263 0.038 0 0 0</pose>
+            <pose frame="">-0.1 -0.1 -0.035 0 0 0</pose>
             <inertial>
                 <pose frame="">0 0 0 0 -0 0</pose>
                 <mass>0.005</mass>
@@ -493,29 +475,12 @@
                     <izz>8.22545e-05</izz>
                 </inertia>
             </inertial>
-            <collision name="rotor_3_collision">
-                <pose frame="">0 0 0 0 -0 0</pose>
-                <geometry>
-                    <cylinder>
-                        <length>0.005</length>
-                        <radius>0.175</radius>
-                    </cylinder>
-                </geometry>
-                <surface>
-                    <contact>
-                        <ode/>
-                    </contact>
-                    <friction>
-                        <ode/>
-                    </friction>
-                </surface>
-            </collision>
             <visual name="rotor_3_visual">
                 <pose frame="">0 0 0 0 -0 0</pose>
                 <geometry>
                     <mesh>
-                        <scale>0.175 0.175 0.175</scale>
-                        <uri>package://meshes/m100_propeller_cw.dae</uri>
+                        <scale>0.06 0.06 0.06</scale>
+                        <uri>package://cerberus_gagarin_sensor_config_1/meshes/propeller_cw.dae</uri>
                     </mesh>
                 </geometry>
                 <material>
@@ -548,4 +513,3 @@
         </joint>
     </model>
 </sdf>
-
