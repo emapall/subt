@@ -10,7 +10,7 @@
   <arg name="top_scan" default="0"/>
   <arg name="bottom_scan" default="0"/>
   <arg name="rgbd_cam" default="0"/>
-  <arg name="lidar_3d" default="1"/>
+
   <group ns="$(arg name)">
     <!--Create multipe bridges so that it can run in parallel-->
     <node
@@ -70,15 +70,21 @@
     </group>
 
     <!-- 3D lidar -->
-    <group if="$(arg lidar_3d)">
-      <node
-        pkg="ros_ign_bridge"
-        type="parameter_bridge"
-        name="ros_ign_bridge_lidar3d"
-        args="$(arg sensor_prefix)/front_laser/scan/points@sensor_msgs/PointCloud2[ignition.msgs.PointCloudPacked">
-        <remap from="$(arg sensor_prefix)/front_laser/scan/points" to="points"/>
-      </node>
-    </group>
+    <node
+      pkg="ros_ign_bridge"
+      type="parameter_bridge"
+      name="ros_ign_bridge_lidar3d"
+      args="$(arg sensor_prefix)/front_laser/scan/points@sensor_msgs/PointCloud2[ignition.msgs.PointCloudPacked">
+      <remap from="$(arg sensor_prefix)/front_laser/scan/points" to="front_laser/points"/>
+    </node>
+
+    <node
+      pkg="ros_ign_bridge"
+      type="parameter_bridge"
+      name="ros_ign_bridge_picoflexx"
+      args="$(arg sensor_prefix)/picoflexx/scan/points@sensor_msgs/PointCloud2[ignition.msgs.PointCloudPacked">
+      <remap from="$(arg sensor_prefix)/picoflexx/scan/points" to="picoflexx_points"/>
+    </node>
 
     <!-- Gas sensor -->
     <node
