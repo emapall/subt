@@ -21,13 +21,13 @@
       </geometry>
     </visual>
     <visual name='left_flashlight_led'>
-      <origin xyz='0.17757 0.17757 0.227379' rpy='0 -0 2.35619'/>
+      <origin xyz='0.16757 0.16757 0.237379' rpy='0 -0 2.35619'/>
       <geometry>
         <mesh filename='package://cerberus_gagarin_sensor_config_1/meshes/cree_xhp70.dae' scale='1 1 1'/>
       </geometry>
     </visual>
     <visual name='right_flashlight_led'>
-      <origin xyz='0.17757 -0.17757 0.227379' rpy='0 -0 0.785398'/>
+      <origin xyz='0.16757 -0.16757 0.237379' rpy='0 -0 0.785398'/>
       <geometry>
         <mesh filename='package://cerberus_gagarin_sensor_config_1/meshes/cree_xhp70.dae' scale='1 1 1'/>
       </geometry>

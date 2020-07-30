@@ -36,7 +36,7 @@
             </visual>
 
             <visual name="left_flashlight_led">
-                <pose frame="">0.17757 0.17757 0.217379 0 0 2.35619</pose>
+                <pose frame="">0.17757 0.17757 0.227379 0 0 2.35619</pose>
                 <geometry>
                     <mesh>
                         <scale>1 1 1</scale>
@@ -45,7 +45,7 @@
                 </geometry>
             </visual>
             <visual name="right_flashlight_led">
-                <pose frame="">0.17757 -0.17757 0.217379 0 0 0.785398</pose>
+                <pose frame="">0.17757 -0.17757 0.227379 0 0 0.785398</pose>
                 <geometry>
                     <mesh>
                         <scale>1 1 1</scale>
@@ -54,7 +54,7 @@
                 </geometry>
             </visual>
             <light name="left_light_source" type="spot">
-                <pose frame="">0.17757 0.17757 0.304935 3.131592653589795 -1.5107899999999999 -3.741592653589791</pose>
+                <pose frame="">0.19 0.19 0.304935 3.131592653589795 -1.5107899999999999 -3.741592653589791</pose>
                 <attenuation>
                     <range>15</range>
                     <linear>0</linear>
@@ -72,7 +72,7 @@
                 <cast_shadows>1</cast_shadows>
             </light>
             <light name="right_light_source" type="spot">
-                <pose frame="">0.17757 -0.17757 0.304935 3.131592653589795 -1.5107899999999999 3.741592653589791</pose>
+                <pose frame="">0.19 -0.19 0.304935 3.131592653589795 -1.5107899999999999 3.741592653589791</pose>
                 <attenuation>
                     <range>15</range>
                     <linear>0</linear>
