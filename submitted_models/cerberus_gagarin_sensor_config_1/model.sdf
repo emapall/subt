@@ -1,9 +1,9 @@
 <?xml version="1.0"?>
 <sdf version="1.6">
     <model name="GAGARIN">
-        <pose>0 0 1 0 0 0</pose>
+        <pose>0 0 0 0 0 0</pose>
         <link name="base_link">
-            <pose frame="">0 0 0 0 -0 0</pose>
+            <pose frame="">0 0 0.01 0 0 0</pose>
             <inertial>
                 <pose frame="">0 0 0 0 -0 0</pose>
                 <mass>2.316</mass> <!--4.10-->
@@ -17,19 +17,16 @@
                 </inertia>
             </inertial>
             <collision name="base_link_inertia_collision">
-                <pose frame="">0 0 -0.224935 0 0 0</pose>
+                <pose frame="">0 0 0.01 0 0 0</pose>
                 <geometry>
-                    <box>
-                        <size> 0.5 0.5 0.4 </size>
-                    </box>
-                    <!-- <mesh>
+                    <mesh>
                         <scale>1 1 1</scale>
                         <uri>meshes/gagarin.stl</uri>
-                    </mesh> -->
+                    </mesh>
                 </geometry>
             </collision>
             <visual name="base_link_inertia_visual">
-                <pose frame="">0 0 -0.224935 0 0 0</pose>
+                <pose frame="">0 0 0.01 0 0 0</pose>
                 <geometry>
                     <mesh>
                         <scale>1 1 1</scale>
@@ -39,7 +36,7 @@
             </visual>
 
             <visual name="left_flashlight_led">
-                <pose frame="">0.17757 0.17757 -0.017556 0 0 2.35619</pose>
+                <pose frame="">0.17757 0.17757 0.217379 0 0 2.35619</pose>
                 <geometry>
                     <mesh>
                         <scale>1 1 1</scale>
@@ -48,7 +45,7 @@
                 </geometry>
             </visual>
             <visual name="right_flashlight_led">
-                <pose frame="">0.17757 -0.17757 -0.017556 0 0 0.785398</pose>
+                <pose frame="">0.17757 -0.17757 0.217379 0 0 0.785398</pose>
                 <geometry>
                     <mesh>
                         <scale>1 1 1</scale>
@@ -57,7 +54,7 @@
                 </geometry>
             </visual>
             <light name="left_light_source" type="spot">
-                <pose frame="">0.17757 0.17757 0.07 3.131592653589795 -1.5107899999999999 -3.741592653589791</pose>
+                <pose frame="">0.17757 0.17757 0.304935 3.131592653589795 -1.5107899999999999 -3.741592653589791</pose>
                 <attenuation>
                     <range>15</range>
                     <linear>0</linear>
@@ -75,7 +72,7 @@
                 <cast_shadows>1</cast_shadows>
             </light>
             <light name="right_light_source" type="spot">
-                <pose frame="">0.17757 -0.17757 0.07 3.131592653589795 -1.5107899999999999 3.741592653589791</pose>
+                <pose frame="">0.17757 -0.17757 0.304935 3.131592653589795 -1.5107899999999999 3.741592653589791</pose>
                 <attenuation>
                     <range>15</range>
                     <linear>0</linear>
@@ -188,7 +185,7 @@
             </sensor>
 
             <visual name="camera_visual">
-                <pose>0.22 0 0.03 0 0 0</pose>
+                <pose>0.22 0 0.264935 0 0 0</pose>
                 <geometry>
                     <box>
                         <size>0.02 0.025 0.025</size>
@@ -196,7 +193,7 @@
                 </geometry>
             </visual>
             <sensor name="camera_front" type="camera">
-                <pose>0.23 0 0.03 0 0 0</pose>
+                <pose>0.23 0 0.264935 0 0 0</pose>
                 <always_on>1</always_on>
                 <update_rate>20</update_rate>
                 <camera name="camera_front">
@@ -235,7 +232,7 @@
                 </camera>
             </sensor>
             <visual name="laser_visual">
-                <pose>0 0 -0.05 3.14159 0 0</pose>
+                <pose>0 0 0.185 3.14159 0 0</pose>
                 <geometry>
                     <cylinder>
                         <radius>0.04041</radius>
@@ -244,9 +241,8 @@
                 </geometry>
             </visual>
             <sensor name="front_laser" type="gpu_ray">
-				<!-- The laser is patterned off of the OS1-16 lidar.
-					which weighs 590 g -->
-                <pose>0 0 -0.05 3.14159 0 0</pose>
+				<!-- The laser is patterned off of the OS1-16 lidar.-->
+                <pose>0 0 0.185 3.14159 0 0</pose>
                 <update_rate>10</update_rate>
                 <lidar>
                     <scan>
@@ -277,9 +273,17 @@
                     </noise>
                 </lidar>
             </sensor>
+            <visual name="picoflexx_visual">
+                <pose>0 0 0.28 0 -1.5708 0</pose>
+                <geometry>
+                    <box>
+                        <size>0.01 0.02 0.08</size>
+                    </box>
+                </geometry>
+            </visual>
             <sensor name="picoflexx" type="gpu_ray">
 				<!-- The laser is patterned off of the picoflexx sensor.-->
-                <pose>0 0 0.04 0 -1.5708 0</pose>
+                <pose>0 0 0.28 0 -1.5708 0</pose>
                 <update_rate>5</update_rate>
                 <lidar>
                     <scan>
@@ -312,7 +316,7 @@
             </sensor>
         </link>
         <link name="rotor_0">
-            <pose frame="">0.1 -0.1 -0.035 0 0 0</pose>
+            <pose frame="">0.1 -0.1 0.21 0 0 0</pose>
             <inertial>
                 <pose frame="">0 0 0 0 -0 0</pose>
                 <mass>0.005</mass>
@@ -362,7 +366,7 @@
             </axis>
         </joint>
         <link name="rotor_1">
-            <pose frame="">-0.1 0.1 -0.035 0 0 0</pose>
+            <pose frame="">-0.1 0.1 0.21 0 0 0</pose>
             <inertial>
                 <pose frame="">0 0 0 0 -0 0</pose>
                 <mass>0.005</mass>
@@ -412,7 +416,7 @@
             </axis>
         </joint>
         <link name="rotor_2">
-            <pose frame="">0.1 0.1 -0.035 0 0 0</pose>
+            <pose frame="">0.1 0.1 0.21 0 0 0</pose>
             <inertial>
                 <pose frame="">0 0 0 0 -0 0</pose>
                 <mass>0.005</mass>
@@ -462,7 +466,7 @@
             </axis>
         </joint>
         <link name="rotor_3">
-            <pose frame="">-0.1 -0.1 -0.035 0 0 0</pose>
+            <pose frame="">-0.1 -0.1 0.21 0 0 0</pose>
             <inertial>
                 <pose frame="">0 0 0 0 -0 0</pose>
                 <mass>0.005</mass>
