@@ -39,6 +39,7 @@ following sensors.
 The following specific sensors are declared payloads of this vehicle:
 * IMU - Vector Nav VN100, modeled by `imu` plugin
 * LIDAR - Velodyne VLP-16, modeled by `gpu_ray` plugin
+* LIDAR - Picoflexx, modeled by `gpu_ray` plugin
 * Color Camera - FLIR Blackfly S, modeled by `camera` plugin
 
 ### Control
@@ -47,24 +48,21 @@ This Aerial Scout is controlled by the default twist controller package inside t
 ### Motion Characteristics
 Based on the tests specified in the DARPA SubT Challenge [Model Preparation
 Guide], this vehicle has the following motion constraint characteristics.
-* _x_ linear velocity range from -3.0 m/s to 3.0 m/s
-* _y_ linear velocity range from -3.0 m/s to 3.0 m/s
-* _z_ linear velocity range from -1.8 m/s to 1.8 m/s
-* _x_ linear acceleration range from -4.0 m/s<sup>2</sup> to 4 m/s<sup>2</sup>
-* _y_ linear acceleration range from -4.0 m/s<sup>2</sup> to 4.0 m/s<sup>2</sup>
-* _z_ linear acceleration range from -5.0 m/s<sup>2</sup> to 5.0 m/s<sup>2</sup>
+* _x_ linear velocity range from -2.0 m/s to 2.0 m/s
+* _y_ linear velocity range from -2.0 m/s to 2.0 m/s
+* _z_ linear velocity range from -1.0 m/s to 1.0 m/s
+* _x_ linear acceleration range from -1.0 m/s<sup>2</sup> to 1.0 m/s<sup>2</sup>
+* _y_ linear acceleration range from -1.0 m/s<sup>2</sup> to 1.0 m/s<sup>2</sup>
+* _z_ linear acceleration range from -4.0 m/s<sup>2</sup> to 4.0 m/s<sup>2</sup>
 * _x_ angular velocity range from -3.0 rad/s to 3.0 rad/s
 * _y_ angular velocity range from -3.0 rad/s to 3.0 rad/s
-* _z_ angular velocity range from -1.9 rad/s to 1.9 rad/s
-* _x_ angular acceleration range from -15.0 rad/s<sup>2</sup> to 15 rad/s<sup>2</sup>
-* _y_ angular acceleration range from -15.0 rad/s<sup>2</sup> to 15.0 rad/s<sup>2</sup>
-* _z_ angular acceleration range from -5.0 rad/s<sup>2</sup> to 5.0 rad/s<sup>2</sup>
+* _z_ angular velocity range from -3.0 rad/s to 3.0 rad/s
 
 The constraints can be found in the following locations within the simulation model
 package ignition::gazebo::systems::MulticopterVelocityControl (file src/subt/submitted_models/cerberus_gagarin_sensor_config_1/launch/spawner.rb)
-* Linear acceleration - <maximumLinearAcceleration>4 4 5</maximumLinearAcceleration>
-* Linear velocity - <maximumLinearVelocity>3 3 1.8</maximumLinearVelocity>
-* Angular velocity - <maximumAngularVelocity>3 3 1.9</maximumAngularVelocity>
+* Linear acceleration - <maximumLinearAcceleration>1 1 4</maximumLinearAcceleration>
+* Linear velocity - <maximumLinearVelocity>2 2 1</maximumLinearVelocity>
+* Angular velocity - <maximumAngularVelocity>3 3 3</maximumAngularVelocity>
 
 ### Endurance Characteristics
 Based on the tests specified in the DARPA SubT Challenge [Model Preparation

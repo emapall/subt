@@ -134,9 +134,9 @@ def spawner(_name, _modelURI, _worldName, _x, _y, _z, _roll, _pitch, _yaw)
           <velocityGain>6 6 10</velocityGain>
           <attitudeGain>4 4 2</attitudeGain>
           <angularRateGain>0.7 0.7 0.7</angularRateGain>
-          <maximumLinearAcceleration>4 4 5</maximumLinearAcceleration>
-          <maximumLinearVelocity>3 3 1.8</maximumLinearVelocity>
-          <maximumAngularVelocity>3 3 1.9</maximumAngularVelocity>
+          <maximumLinearAcceleration>1 1 4</maximumLinearAcceleration>
+          <maximumLinearVelocity>2 2 1</maximumLinearVelocity>
+          <maximumAngularVelocity>3 3 3</maximumAngularVelocity>
           <linearVelocityNoiseMean>0 0 0</linearVelocityNoiseMean>
           <!-- linearVelocityNoiseStdDev based on error values reported in the paper Shen et. al., -->
           <!-- Vision-Based State Estimation and Trajectory Control Towards High-Speed Flight with a Quadrotor -->
