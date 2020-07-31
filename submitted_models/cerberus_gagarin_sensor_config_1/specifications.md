@@ -32,8 +32,7 @@ The software included in this package is released under a [BSD 3-Clause license]
 
 
 ### Cost and Scale
-**---------- ? INSERT COST ? ---------------** \
-<!-- NOTE: This value is only referring to the experimental Gagarin system developed for the DARPA SubT Challenge -->
+The CERBERUS Gagarin robot is a research platform and its cost is not publicly available at the moment.
 It weighs approximately 2.316 kg.
 
 ### Sensors
