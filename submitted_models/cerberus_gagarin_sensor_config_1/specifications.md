@@ -67,7 +67,7 @@ The constraints can be found in the following locations within the simulation mo
 package ignition::gazebo::systems::MulticopterVelocityControl (file src/subt/submitted_models/cerberus_gagarin_sensor_config_1/launch/spawner.rb)
 * Linear acceleration - <maximumLinearAcceleration>1 1 4</maximumLinearAcceleration>
 * Linear velocity - <maximumLinearVelocity>2 2 1</maximumLinearVelocity>
-* Angular velocity - <maximumAngularVelocity>3 3 3</maximumAngularVelocity>
+* Angular velocity - <maximumAngularVelocity>2 2 3</maximumAngularVelocity>
 
 ### Endurance Characteristics
 Based on the tests specified in the DARPA SubT Challenge [Model Preparation

@@ -132,8 +132,8 @@ def spawner(_name, _modelURI, _worldName, _x, _y, _z, _roll, _pitch, _yaw)
           <enableSubTopic>velocity_controller/enable</enableSubTopic>
           <comLinkName>base_link</comLinkName>
           <velocityGain>6 6 10</velocityGain>
-          <attitudeGain>4 4 2</attitudeGain>
-          <angularRateGain>0.7 0.7 0.7</angularRateGain>
+          <attitudeGain>2 2 1</attitudeGain>
+          <angularRateGain>0.4 0.4 0.4</angularRateGain>
           <maximumLinearAcceleration>1 1 4</maximumLinearAcceleration>
           <maximumLinearVelocity>2 2 1</maximumLinearVelocity>
           <maximumAngularVelocity>2 2 3</maximumAngularVelocity>
@@ -185,7 +185,7 @@ def spawner(_name, _modelURI, _worldName, _x, _y, _z, _roll, _pitch, _yaw)
           <capacity>45.0</capacity>
           <resistance>0.061523</resistance>
           <smooth_current_tau>1.9499</smooth_current_tau>
-          <power_load>70</power_load>
+          <power_load>117</power_load>
           <start_on_motion>true</start_on_motion>
         </plugin>
         <!-- Gas Detector plugin -->
