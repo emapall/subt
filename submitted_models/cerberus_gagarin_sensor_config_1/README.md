@@ -19,5 +19,5 @@ source install/setup.bash
 ```
 
 ## launch the simulation
-ign launch -v 4 src/subt/submitted_models/cerberus_gagarin_sensor_config_1/launch/gagarin_test.ign robotName:=m100 modelName:=CERBERUS_GAGARIN_SENSOR_CONFIG_1 localModel:=true
+ign launch -v 4 src/subt/submitted_models/cerberus_gagarin_sensor_config_1/launch/gagarin_test.ign robotName:=gagarin modelName:=CERBERUS_GAGARIN_SENSOR_CONFIG_1 localModel:=true
 
