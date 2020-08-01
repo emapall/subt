@@ -83,7 +83,7 @@
       type="parameter_bridge"
       name="ros_ign_bridge_picoflexx"
       args="$(arg sensor_prefix)/picoflexx/scan/points@sensor_msgs/PointCloud2[ignition.msgs.PointCloudPacked">
-      <remap from="$(arg sensor_prefix)/picoflexx/scan/points" to="picoflexx_points"/>
+      <remap from="$(arg sensor_prefix)/picoflexx/scan/points" to="picoflexx/points"/>
     </node>
 
     <!-- Gas sensor -->
