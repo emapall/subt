@@ -8,7 +8,7 @@ the CERBERUS Aerial Scout with Sensor Configuration 1. This robot may be launche
 ## Description
 CERBERUS RMF (Resilient Micro Flyer) Aerial Scout is a highly autonomous system capable of being deployed in an unknown environment and proceeding for its mapping up to the point of automatic return to home. The platform basis is designed by Flyability but the rest is custom integration and new algorithms.
 In this configuration, CERBERUS Aerial Scout is equipped with the following sensors: 
-LIDAR, front facing color camera, IMU and upward facing depth sensor.
+1x Realsense T265 tacking camera, 4x ToF Ranging Sensor, 1x IMU.
 
 ## Usage Instructions
 The vehicle can be launched with the following command:
@@ -39,7 +39,7 @@ It weighs approximately 0.524 kg. The estimated cost to build one physical unit 
 This Aerial Scout with sensor configuration 1 includes the following sensors. 
 The following specific sensors are declared payloads of this vehicle:
 * IMU - Generic, modeled by `imu` plugin
-* 4x ToF Ranging sensor - VL53L0X, modeled by `gpu_ray` plugin
+* 4x ToF Ranging sensors - VL53L0X, modeled by `gpu_ray` plugin
 * Tracking Camera - T265, modeled by two `camera` sensors (right and left) with large FoV.
 
 ### Control
