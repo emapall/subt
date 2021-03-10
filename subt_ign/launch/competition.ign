@@ -24,7 +24,7 @@
   # This is useful for debugging purposes, but will not be available during
   # competition scoring.
 
-  # Check if enableGroundTruith is not defined or is empty/nil
+  # Check if enableGroundTruth is not defined or is empty/nil
   if !defined?(enableGroundTruth) || enableGroundTruth == nil || enableGroundTruth.empty?
     $enableGroundTruth = false
   else
@@ -33,7 +33,7 @@
 
   # Check if circuit is not defined or is empty/nil
   # Also make sure the given circuit name is valid
-  validCircuits = ["cave", "tunnel", "urban"]
+  validCircuits = ["cave", "tunnel", "urban", "finals"]
   if !defined?(circuit) || circuit == nil || circuit.empty?
     abort("circuit was not defined, exiting now")
   elsif validCircuits.include?(circuit)
@@ -70,7 +70,7 @@
   $commsFadingExponent = 2.5
   $commsScalingFactor = 1.0
   $commsRangePerHop = 2.0
-  if $circuit == "cave"
+  if $circuit == "cave" || $circuit == "finals"
     $commsFadingExponent = 1.5
     $commsScalingFactor = 0.55
     $commsRangePerHop = 2.0
@@ -83,6 +83,12 @@
     spawnWorldZPos = 7.5
     spawnWorldYaw = 0
     guiCameraPose = "-2.0 27 15 0 0.868 0"
+  elsif $circuit == "finals"
+    spawnWorldXPos = -18
+    spawnWorldYPos = -1
+    spawnWorldZPos = 0
+    spawnWorldYaw = 0
+    guiCameraPose = "-20 0 2.5 0 0.268 0"
   else
     spawnWorldXPos = 0
     spawnWorldYPos = 0
@@ -269,6 +275,9 @@
     <% elsif $worldName.include?('cave_circuit_') &&
           !$worldName.include?('practice') %>
       <world_file>cave_circuit/<%= worldNumber %>/<%= $worldName %>.sdf</world_file>
+    <% elsif $worldName.include?('final_event') &&
+          !$worldName.include?('practice') %>
+      <world_file>final_event/<%= worldNumber %>/<%= $worldName %>.sdf</world_file>
     <% else %>
       <world_file><%= $worldName %>.sdf</world_file>
     <% end %>
@@ -526,10 +535,20 @@
             <publish_sensor_pose>true</publish_sensor_pose>
             <publish_collision_pose>false</publish_collision_pose>
             <publish_visual_pose>false</publish_visual_pose>
-            <publish_nested_model_pose>#{$enableGroundTruth}</publish_nested_model_pose>
+            <publish_nested_model_pose>false</publish_nested_model_pose>
             <use_pose_vector_msg>true</use_pose_vector_msg>
             <static_publisher>true</static_publisher>
             <static_update_frequency>60</static_update_frequency>
+          </plugin>
+          <plugin filename="libignition-gazebo-pose-publisher-system.so"
+            name="ignition::gazebo::systems::PosePublisher">
+            <publish_link_pose>false</publish_link_pose>
+            <publish_sensor_pose>false</publish_sensor_pose>
+            <publish_collision_pose>false</publish_collision_pose>
+            <publish_visual_pose>false</publish_visual_pose>
+            <publish_nested_model_pose>#{$enableGroundTruth}</publish_nested_model_pose>
+            <use_pose_vector_msg>true</use_pose_vector_msg>
+            <static_publisher>false</static_publisher>
           </plugin>
           <!-- Battery plugin -->
           <plugin filename="libignition-gazebo-linearbatteryplugin-system.so"
@@ -669,10 +688,20 @@
             <publish_sensor_pose>true</publish_sensor_pose>
             <publish_collision_pose>false</publish_collision_pose>
             <publish_visual_pose>false</publish_visual_pose>
-            <publish_nested_model_pose>#{$enableGroundTruth}</publish_nested_model_pose>
+            <publish_nested_model_pose>false</publish_nested_model_pose>
             <use_pose_vector_msg>true</use_pose_vector_msg>
             <static_publisher>true</static_publisher>
             <static_update_frequency>60</static_update_frequency>
+          </plugin>
+          <plugin filename="libignition-gazebo-pose-publisher-system.so"
+            name="ignition::gazebo::systems::PosePublisher">
+            <publish_link_pose>false</publish_link_pose>
+            <publish_sensor_pose>false</publish_sensor_pose>
+            <publish_collision_pose>false</publish_collision_pose>
+            <publish_visual_pose>false</publish_visual_pose>
+            <publish_nested_model_pose>#{$enableGroundTruth}</publish_nested_model_pose>
+            <use_pose_vector_msg>true</use_pose_vector_msg>
+            <static_publisher>false</static_publisher>
           </plugin>
           <!-- Battery plugin -->
           <plugin filename="libignition-gazebo-linearbatteryplugin-system.so"
@@ -789,10 +818,20 @@
           <publish_sensor_pose>true</publish_sensor_pose>
           <publish_collision_pose>false</publish_collision_pose>
           <publish_visual_pose>false</publish_visual_pose>
-          <publish_nested_model_pose>#{$enableGroundTruth}</publish_nested_model_pose>
+          <publish_nested_model_pose>false</publish_nested_model_pose>
           <use_pose_vector_msg>true</use_pose_vector_msg>
           <static_publisher>true</static_publisher>
           <static_update_frequency>60</static_update_frequency>
+        </plugin>
+        <plugin filename="libignition-gazebo-pose-publisher-system.so"
+          name="ignition::gazebo::systems::PosePublisher">
+          <publish_link_pose>false</publish_link_pose>
+          <publish_sensor_pose>false</publish_sensor_pose>
+          <publish_collision_pose>false</publish_collision_pose>
+          <publish_visual_pose>false</publish_visual_pose>
+          <publish_nested_model_pose>#{$enableGroundTruth}</publish_nested_model_pose>
+          <use_pose_vector_msg>true</use_pose_vector_msg>
+          <static_publisher>false</static_publisher>
         </plugin>
         <plugin filename="libignition-gazebo-multicopter-motor-model-system.so"
           name="ignition::gazebo::systems::MulticopterMotorModel">
@@ -994,10 +1033,20 @@
           <publish_sensor_pose>true</publish_sensor_pose>
           <publish_collision_pose>false</publish_collision_pose>
           <publish_visual_pose>false</publish_visual_pose>
-          <publish_nested_model_pose>#{$enableGroundTruth}</publish_nested_model_pose>
+          <publish_nested_model_pose>false</publish_nested_model_pose>
           <use_pose_vector_msg>true</use_pose_vector_msg>
           <static_publisher>true</static_publisher>
           <static_update_frequency>60</static_update_frequency>
+        </plugin>
+        <plugin filename="libignition-gazebo-pose-publisher-system.so"
+          name="ignition::gazebo::systems::PosePublisher">
+          <publish_link_pose>false</publish_link_pose>
+          <publish_sensor_pose>false</publish_sensor_pose>
+          <publish_collision_pose>false</publish_collision_pose>
+          <publish_visual_pose>false</publish_visual_pose>
+          <publish_nested_model_pose>#{$enableGroundTruth}</publish_nested_model_pose>
+          <use_pose_vector_msg>true</use_pose_vector_msg>
+          <static_publisher>false</static_publisher>
         </plugin>
         <plugin filename="libignition-gazebo-multicopter-motor-model-system.so"
           name="ignition::gazebo::systems::MulticopterMotorModel">
