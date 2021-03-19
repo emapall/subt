@@ -192,10 +192,10 @@ def spawner(_name, _modelURI, _worldName, _x, _y, _z, _roll, _pitch, _yaw)
           <open_circuit_voltage_constant_coef>22.2</open_circuit_voltage_constant_coef>
           <open_circuit_voltage_linear_coef>-3.1424</open_circuit_voltage_linear_coef>
           <initial_charge>45.0</initial_charge>
-          <capacity>45.0</capacity>
+          <capacity>90.0</capacity>
           <resistance>0.061523</resistance>
           <smooth_current_tau>1.9499</smooth_current_tau>
-          <power_load>70</power_load>
+          <power_load>0.8</power_load>
           <start_on_motion>true</start_on_motion>
         </plugin>
         <!-- Gas Detector plugin -->
