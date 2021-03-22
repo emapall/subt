@@ -71,7 +71,7 @@ def spawner(_name, _modelURI, _worldName, _x, _y, _z, _roll, _pitch, _yaw)
         <voltage>50</voltage>
         <open_circuit_voltage_constant_coef>50</open_circuit_voltage_constant_coef>
         <open_circuit_voltage_linear_coef>-3.1424</open_circuit_voltage_linear_coef>
-        <initial_charge>12.3</initial_charge>
+        <initial_charge>24.6</initial_charge>
         <capacity>24.6</capacity>
         <resistance>0.061523</resistance>
         <smooth_current_tau>1.9499</smooth_current_tau>
