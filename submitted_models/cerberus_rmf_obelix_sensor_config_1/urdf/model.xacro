@@ -1,6 +1,6 @@
 <?xml version='1.0' encoding='utf-8'?>
-<robot name="RMF" xmlns:xacro="http://ros.org/wiki/xacro">
-  <xacro:arg name="name" default="RMF"/>
+<robot name="RMF_OBELIX" xmlns:xacro="http://ros.org/wiki/xacro">
+  <xacro:arg name="name" default="RMF_OBELIX"/>
   <xacro:property name="name" value="$(arg name)"/>
   <link name='${name}/base_link'>
     <inertial>

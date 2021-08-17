@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='utf-8'?>
-<robot name='RMF'>
+<robot name='RMF_OBELIX'>
   <link name='base_link'>
     <inertial>
       <origin xyz='0 0 0.01' rpy='0 -0 0'/>
