@@ -160,8 +160,7 @@ def spawner(_name, _modelURI, _worldName, _x, _y, _z, _roll, _pitch, _yaw)
           <capacity>45.0</capacity>
           <resistance>0.061523</resistance>
           <smooth_current_tau>1.9499</smooth_current_tau>
-          <!-- <power_load>117</power_load> # for 5 mins -->
-          <power_load>58</power_load>
+          <power_load>70</power_load>
           <start_on_motion>true</start_on_motion>
         </plugin>
         <!-- Gas Detector plugin -->

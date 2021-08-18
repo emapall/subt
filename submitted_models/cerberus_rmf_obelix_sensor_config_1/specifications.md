@@ -15,7 +15,7 @@ ign launch -v 4 tunnel_circuit_practice.ign worldName:=tunnel_circuit_practice_0
 ```
 The velocity of the robot can be controlled with following command:
 ```
-rostopic pub /rmf/cmd_vel geometry_msgs/Twist "linear:
+rostopic pub /rmf_obelix/cmd_vel geometry_msgs/Twist "linear:
   x: -0.1
   y: 0.1
   z: 0.1
@@ -34,7 +34,7 @@ The CERBERUS RMF Obelix robot is a research platform and its cost is not publicl
 It weighs approximately 1.3 kg. The estimated cost to build one physical unit is approximately US Dollars 400.
 
 ### Sensors
-This Aerial Scout with sensor configuration 1 includes the following sensors. 
+This Aerial Scout with sensor configuration 1 includes the following sensors.
 The following specific sensors are declared payloads of this vehicle:
 * IMU - Generic, modeled by `imu` plugin.
 * LIDAR - Ouster OS0, modeled by `gpu_ray` plugin.

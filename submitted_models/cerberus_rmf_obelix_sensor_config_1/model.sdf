@@ -269,7 +269,7 @@
                 </inertia>
             </inertial>
             <visual name="rotor_0_visual">
-                <pose frame="">0 0 -0.03 0 0 0</pose>
+                <pose frame="">0 0 -0.02 0 0 0</pose>
                 <geometry>
                     <mesh>
                         <scale>0.05 0.05 0.05</scale>
@@ -369,7 +369,7 @@
                 </inertia>
             </inertial>
             <visual name="rotor_2_visual">
-                <pose frame="">0 0 -0.03 0 0 0</pose>
+                <pose frame="">0 0 -0.02 0 0 0</pose>
                 <geometry>
                     <mesh>
                         <scale>0.05 0.05 0.05</scale>
