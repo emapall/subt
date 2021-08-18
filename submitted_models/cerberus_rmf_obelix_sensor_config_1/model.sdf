@@ -6,7 +6,7 @@
             <pose frame="">0 0 0.01 0 0 0</pose>
             <inertial>
                 <pose frame="">0 0 0 0 -0 0</pose>
-                <mass>1.30</mass>
+                <mass>1.46</mass>
                 <inertia>
                     <ixx>0.017</ixx>
                     <ixy>0</ixy>
@@ -21,7 +21,7 @@
                 <geometry>
                     <mesh>
                         <scale>1 1 1</scale>
-                        <uri>meshes/rmf.stl</uri>
+                        <uri>meshes/rmf_obelix.dae</uri>
                     </mesh>
                 </geometry>
             </collision>
