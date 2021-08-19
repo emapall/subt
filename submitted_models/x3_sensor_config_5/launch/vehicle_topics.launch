@@ -42,203 +42,76 @@
       args="/model/$(arg name)/cmd_vel@geometry_msgs/Twist]ignition.msgs.Twist">
       <remap from="/model/$(arg name)/cmd_vel" to="cmd_vel"/>
     </node>
+    <!-- LIDAR -->
     <node
       pkg="ros_ign_bridge"
       type="parameter_bridge"
-      name="ros_ign_bridge_velocity_control_enable"
-      args="/model/$(arg name)/velocity_controller/enable@std_msgs/Bool]ignition.msgs.Boolean">
-      <remap from="/model/$(arg name)/velocity_controller/enable" to="velocity_controller/enable"/>
+      name="ros_ign_bridge_lidar3d"
+      args="$(arg sensor_prefix)/top_lidar/scan/points@sensor_msgs/PointCloud2[ignition.msgs.PointCloudPacked">
+      <remap from="$(arg sensor_prefix)/top_lidar/scan/points" to="top_lidar/points"/>
     </node>
-
-    <!-- RGBD -->
-    <group if="$(arg rgbd_cam)">
-      <node
-        pkg="ros_ign_bridge"
-        type="parameter_bridge"
-        name="ros_ign_bridge_rgbd"
-        args="$(arg sensor_prefix)/camera_front/points@sensor_msgs/PointCloud2[ignition.msgs.PointCloudPacked">
-        <remap from="$(arg sensor_prefix)/camera_front/points" to="rgbd_camera/depth/points"/>
-      </node>
-      <node
-        pkg="ros_ign_image"
-        type="image_bridge"
-        name="ros_ign_image_depth"
-        args="$(arg sensor_prefix)/camera_front/depth_image">
-        <remap from="$(arg sensor_prefix)/camera_front/depth_image" to="front/depth"/>
-      </node>
-
-      <node
-        pkg="subt_ros"
-        type="optical_frame_publisher"
-        name="optical_frame_publisher_depth"
-        args="depth">
-        <remap from="input/image" to="front/depth" />
-        <remap from="output/image" to="front/optical/depth" />
-      </node>
-
-    </group>
-
-    <!-- 3D lidar -->
-    <group if="$(arg lidar_3d)">
-      <node
-        pkg="ros_ign_bridge"
-        type="parameter_bridge"
-        name="ros_ign_bridge_lidar3d"
-        args="$(arg sensor_prefix)/front_laser/scan/points@sensor_msgs/PointCloud2[ignition.msgs.PointCloudPacked">
-        <remap from="$(arg sensor_prefix)/front_laser/scan/points" to="points"/>
-      </node>
-    </group>
-
-    <!-- stereo -->
-    <group if="$(arg stereo_cam)">
-      <node
-        pkg="ros_ign_bridge"
-        type="parameter_bridge"
-        name="ros_ign_bridge_stereo_camera"
-        args="$(arg sensor_prefix)/camera_front_right/camera_info@sensor_msgs/CameraInfo[ignition.msgs.CameraInfo
-              $(arg sensor_prefix)/camera_front_left/camera_info@sensor_msgs/CameraInfo[ignition.msgs.CameraInfo">
-        <remap from="$(arg sensor_prefix)/camera_front_right/camera_info" to="front/right/camera_info"/>
-        <remap from="$(arg sensor_prefix)/camera_front_left/camera_info" to="front/left/camera_info"/>
-      </node>
-      <node
-        pkg="ros_ign_image"
-        type="image_bridge"
-        name="ros_ign_image_stereo_camera"
-        args="$(arg sensor_prefix)/camera_front_right/image
-              $(arg sensor_prefix)/camera_front_left/image">
-        <remap from="$(arg sensor_prefix)/camera_front_right/image" to="front/right/image_raw"/>
-        <remap from="$(arg sensor_prefix)/camera_front_left/image" to="front/left/image_raw"/>
-      </node>
-
-      <node
-        pkg="subt_ros"
-        type="optical_frame_publisher"
-        name="optical_frame_publisher_stereo_right">
-        <remap from="input/image" to="front/right/image_raw" />
-        <remap from="output/image" to="front/right/optical/image_raw" />
-        <remap from="input/camera_info" to="front/right/camera_info" />
-        <remap from="output/camera_info" to="front/right/optical/camera_info" />
-      </node>
-
-      <node
-        pkg="subt_ros"
-        type="optical_frame_publisher"
-        name="optical_frame_publisher_stereo_left">
-        <remap from="input/image" to="front/left/image_raw" />
-        <remap from="output/image" to="front/left/optical/image_raw" />
-        <remap from="input/camera_info" to="front/left/camera_info" />
-        <remap from="output/camera_info" to="front/left/optical/camera_info" />
-      </node>
-
-    </group>
-
-    <!-- non-stereo -->
-    <group unless="$(arg stereo_cam)">
-      <node
+    <!-- CAMERA -->
+    <node
         pkg="ros_ign_bridge"
         type="parameter_bridge"
         name="ros_ign_bridge_camera"
-        args="$(arg sensor_prefix)/camera_front/camera_info@sensor_msgs/CameraInfo[ignition.msgs.CameraInfo">
-        <remap from="$(arg sensor_prefix)/camera_front/camera_info" to="front/camera_info"/>
-      </node>
-      <node
+        args="$(arg sensor_prefix)/camera_left/camera_info@sensor_msgs/CameraInfo[ignition.msgs.CameraInfo">
+        <remap from="$(arg sensor_prefix)/camera_left/camera_info" to="left/camera_info"/>
+    </node>    
+    <node
         pkg="ros_ign_image"
         type="image_bridge"
         name="ros_ign_image_camera"
-        args="$(arg sensor_prefix)/camera_front/image">
-        <remap from="$(arg sensor_prefix)/camera_front/image" to="front/image_raw"/>
-      </node>
-
-      <node
-        pkg="subt_ros"
-        type="optical_frame_publisher"
-        name="optical_frame_publisher">
-        <remap from="input/image" to="front/image_raw" />
-        <remap from="output/image" to="front/optical/image_raw" />
-        <remap from="input/camera_info" to="front/camera_info" />
-        <remap from="output/camera_info" to="front/optical/camera_info" />
-      </node>
-
-    </group>
-
-    <!-- laser scan -->
-    <group if="$(arg laser_scan)">
-      <node
-        pkg="ros_ign_bridge"
-        type="parameter_bridge"
-        name="ros_ign_bridge_gpu_lidar"
-        args="$(arg sensor_prefix)/front_laser/scan@sensor_msgs/LaserScan[ignition.msgs.LaserScan">
-        <remap from="$(arg sensor_prefix)/front_laser/scan" to="front_scan"/>
-      </node>
-    </group>
-
-    <!-- top scan -->
-    <group if="$(arg top_scan)">
-      <node
-        pkg="ros_ign_bridge"
-        type="parameter_bridge"
-        name="ros_ign_bridge_gpu_lidar_top"
-        args="$(arg sensor_prefix)/top_laser/scan@sensor_msgs/LaserScan[ignition.msgs.LaserScan">
-        <remap from="$(arg sensor_prefix)/top_laser/scan" to="top_scan"/>
-      </node>
-    </group>
-
-    <!-- bottom scan -->
-    <group if="$(arg bottom_scan)">
-      <node
-        pkg="ros_ign_bridge"
-        type="parameter_bridge"
-        name="ros_ign_bridge_gpu_lidar_bottom"
-        args="$(arg sensor_prefix)/bottom_laser/scan@sensor_msgs/LaserScan[ignition.msgs.LaserScan">
-        <remap from="$(arg sensor_prefix)/bottom_laser/scan" to="bottom_scan"/>
-      </node>
-    </group>
-
-    <!-- UAV -->
-    <group if="$(arg uav)">
-      <node
-        pkg="ros_ign_bridge"
-        type="parameter_bridge"
-        name="ros_ign_bridge_magnetometer"
-        args="$(arg sensor_prefix)/magnetometer/magnetometer@sensor_msgs/MagneticField[ignition.msgs.Magnetometer">
-        <remap from="$(arg sensor_prefix)/magnetometer/magnetometer" to="magnetic_field"/>
-      </node>
-      <node
-        pkg="ros_ign_bridge"
-        type="parameter_bridge"
-        name="ros_ign_bridge_fluid_pressure"
-        args="$(arg sensor_prefix)/air_pressure/air_pressure@sensor_msgs/FluidPressure[ignition.msgs.FluidPressure">
-        <remap from="$(arg sensor_prefix)/air_pressure/air_pressure" to="air_pressure"/>
-      </node>
-    </group>
-
-    <!-- UGV -->
-    <group unless="$(arg uav)">
-      <node
-        pkg="ros_ign_bridge"
-        type="parameter_bridge"
-        name="ros_ign_bridge_odom"
-        args="/model/$(arg name)/odometry@nav_msgs/Odometry[ignition.msgs.Odometry">
-        <remap from="/model/$(arg name)/odometry" to="odom"/>
-      </node>
-    </group>
-
+        args="$(arg sensor_prefix)/camera_left/image">
+        <remap from="$(arg sensor_prefix)/camera_left/image" to="left/image_raw"/>
+    </node>
+    <node
+      pkg="subt_ros"
+      type="optical_frame_publisher"
+      name="optical_frame_publisher">
+      <remap from="input/image" to="left/image_raw" />
+      <remap from="output/image" to="left/optical/image_raw" />
+      <remap from="input/camera_info" to="left/camera_info" />
+      <remap from="output/camera_info" to="left/optical/camera_info" />
+    </node>
+<!-- DEPTH CAMERA-->
+    <!-- Depth camera:Point cloud-->
     <node
       pkg="ros_ign_bridge"
       type="parameter_bridge"
-      name="ros_ign_bridge_battery_state"
-      args="/model/$(arg name)/battery/linear_battery/state@sensor_msgs/BatteryState[ignition.msgs.BatteryState">
-      <remap from="/model/$(arg name)/battery/linear_battery/state" to="battery_state"/>
+      name="ros_ign_bridge_depth_camera_right"
+      args="$(arg sensor_prefix)/depth_camera_right/depth_image/points@sensor_msgs/PointCloud2[ignition.msgs.PointCloudPacked">
+      <remap from="$(arg sensor_prefix)/depth_camera_right/depth_image/points" to="depth_camera_right/depth/points"/>
     </node>
-    
+    <!-- Depth camera:Depth image-->
+    <node
+      pkg="ros_ign_image"
+      type="image_bridge"
+      name="ros_ign_image_depth_camera_right"
+      args="$(arg sensor_prefix)/depth_camera_right/depth_image">
+      <remap from="$(arg sensor_prefix)/depth_camera_right/depth_image" to="depth_camera_right/depth"/>
+    </node>
+    <!-- Depth camera:Depth image parameters-->
     <node
       pkg="ros_ign_bridge"
       type="parameter_bridge"
-      name="ros_ign_bridge_gas"
-      args="/model/$(arg name)/gas_detected@std_msgs/Bool[ignition.msgs.Boolean">
-      <remap from="/model/$(arg name)/gas_detected" to="gas_detected"/>
+      name="ros_ign_bridge_depth_camera_right_info"
+      args="$(arg sensor_prefix)/depth_camera_right/camera_info@sensor_msgs/CameraInfo[ignition.msgs.CameraInfo">
+      <remap from="$(arg sensor_prefix)/depth_camera_right/camera_info" to="depth_camera_right/camera_info"/>
     </node>
+    <!-- Depth camera:Optical frame publisher-->
+    <node
+      pkg="subt_ros"
+      type="optical_frame_publisher"
+      name="optical_frame_publisher_depth_camera_right_depth">
+      <remap from="input/image" to="depth_camera_right/depth" />
+      <remap from="output/image" to="depth_camera_right/optical/depth" />
+      <remap from="input/camera_info" to="depth_camera_right/camera_info" />
+      <remap from="output/camera_info" to="depth_camera_right/optical/camera_info" />
+    </node>
+
     
+
     <node
       pkg="subt_ros"
       type="pose_tf_broadcaster"
