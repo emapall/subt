@@ -1,8 +1,0 @@
-{
-  "python.autoComplete.extraPaths": [
-    "/home/flk/Projects/subt_ws/devel/lib/python3/dist-packages",
-    "/home/flk/Projects/subt_ws/install/lib/python3/dist-packages",
-    "/home/flk/Projects/voliro_ws_sim/devel/lib/python3/dist-packages",
-    "/opt/ros/noetic/lib/python3/dist-packages"
-  ]
-}

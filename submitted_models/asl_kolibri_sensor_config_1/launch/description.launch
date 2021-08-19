@@ -1,5 +1,0 @@
-<?xml version="1.0"?>
-<launch>
-  <arg name="name" doc="Name of Vehicle" default="kolibri"/>
-  <param name="$(arg name)/robot_description" command="$(find xacro)/xacro '$(find asl_kolibri_sensor_config_1)/urdf/x3_from_sdf.xacro' name:=$(arg name)"/>
-</launch>
