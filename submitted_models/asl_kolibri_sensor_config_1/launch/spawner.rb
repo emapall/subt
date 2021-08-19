@@ -22,8 +22,8 @@ def spawner(_name, _modelURI, _worldName, _x, _y, _z, _roll, _pitch, _yaw)
         <static_publisher>true</static_publisher>
         <static_update_frequency>1</static_update_frequency>
       </plugin>
-      <plugin filename="libSampleSystem.so"
-      name="ignition::gazebo::systems::sample_system::SampleSystem">
+      <plugin filename="libAnymalBControlPlugin1.so"
+              name="ignition::gazebo::systems::AnymalControlPlugin">
       </plugin>
       <!-- Battery plugin -->
       <plugin filename="libignition-gazebo-linearbatteryplugin-system.so"
