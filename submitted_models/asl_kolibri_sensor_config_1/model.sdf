@@ -47,7 +47,7 @@
         <direction>0 0 -1</direction>
         <cast_shadows>1</cast_shadows>
       </light>
-
+      
       <sensor name="imu_sensor" type="imu">
         <always_on>1</always_on>
         <update_rate>250</update_rate>
@@ -124,6 +124,7 @@
             </linear_acceleration>
         </imu>
       </sensor>
+      <!--
       <sensor name="front_laser" type="gpu_lidar">
         <visualize>0</visualize>
         <update_rate>10</update_rate>
@@ -154,7 +155,8 @@
           </noise>
         </lidar>
         <pose frame="">-0.364 0.000 0.142 0.000 0.000 -1.571</pose>
-      </sensor>
+      </sensor> -->
+      <!--
       <sensor name="front_bpearl" type="gpu_lidar">
         <visualize>0</visualize>
         <update_rate>10</update_rate>
@@ -185,9 +187,9 @@
           </noise>
         </lidar>
         <pose frame="">0.524 0.000 -0.042 -2.576 0.245 -1.936</pose>
-      </sensor>
+      </sensor> -->
+      <!--
       <sensor name="picoflexx" type="depth_camera">
-				<!-- The laser is patterned off of the picoflexx sensor.-->
           <pose>0 0 0.29 0 -1.5708 0</pose>
           <update_rate>5</update_rate>
           <camera name="picoflexx">
@@ -212,7 +214,8 @@
           </camera>
           <always_on>1</always_on>
           <visualize>0</visualize>
-      </sensor>
+      </sensor>-->
+      <!--
       <sensor name="camera_0" type="camera">
         <always_on>1</always_on>
         <update_rate>20</update_rate>
@@ -221,12 +224,9 @@
           <horizontal_fov>2.19911</horizontal_fov>
           <lens>
             <intrinsics>
-              <!-- fx = fy = width / ( 2 * tan (hfov / 2 ) ) -->
               <fx>183.43</fx>
               <fy>183.43</fy>
-              <!-- cx = ( width + 1 ) / 2 -->
               <cx>360.5</cx>
-              <!-- cy = ( height + 1 ) / 2 -->
               <cy>270.5</cy>
               <s>0</s>
             </intrinsics>
@@ -245,8 +245,8 @@
               <stddev>0.007</stddev>
             </noise>
         </camera>
-      </sensor>
-
+      </sensor>-->
+    
     </link>
   </model>
 </sdf>
