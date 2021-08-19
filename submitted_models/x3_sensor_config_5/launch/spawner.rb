@@ -22,7 +22,7 @@ def spawner(_name, _modelURI, _worldName, _x, _y, _z, _roll, _pitch, _yaw)
         <static_publisher>true</static_publisher>
         <static_update_frequency>60</static_update_frequency>
       </plugin>
-      <plugin filename="cacca-libignition-gazebo-pose-publisher-system.so"
+      <plugin filename="libignition-gazebo-pose-publisher-system.so"
         name="ignition::gazebo::systems::PosePublisher">
         <publish_link_pose>false</publish_link_pose>
         <publish_sensor_pose>false</publish_sensor_pose>

@@ -224,53 +224,54 @@
           <visualize>0</visualize>
       </sensor>
 
-    <!-- ANOTHER TYPE OF DEPTH CAMERA-->
-    <!--<sensor name="downward_realsense" type="rgbd_camera">
-    <camera name="camera_down">
-        <horizontal_fov>1.0472</horizontal_fov>
-        <lens>
-            <intrinsics>
-                <fx>277.1</fx>
-                <fy>277.1</fy>
-                <cx>160.5</cx>
-                <cy>120.5</cy>
-                <s>0</s>
-            </intrinsics>
-        </lens>
-        <distortion>
-            <k1>0.0</k1>
-            <k2>0.0</k2>
-            <k3>0.0</k3>
-            <p1>0.0</p1>
-            <p2>0.0</p2>
-            <center>0.5 0.5</center>
-        </distortion>
-        <image>
-            <width>320</width>
-            <height>240</height>
-            <format>R8G8B8</format>
-        </image>
-        <clip>
-            <near>0.01</near>
-            <far>300</far>
-        </clip>
-        <depth_camera>
-            <clip>
-            <near>0.1</near>
-            <far>10</far>
-            </clip>
-        </depth_camera>
-        <noise>
-            <type>gaussian</type>
-            <mean>0</mean>
-            <stddev>0.007</stddev>
-        </noise>
-    </camera>
-    <always_on>1</always_on>
-    <update_rate>10</update_rate>
-    <visualize>0</visualize>
-    <pose frame="">0.388757 -0.000224 1.5576 -0.009501 0.38227 0</pose>
-    </sensor>-->
+        <sensor name="camera_front" type="rgbd_camera">
+            <pose>1 0 0 0 0 0</pose>
+            <always_on>1</always_on>
+            <update_rate>20</update_rate>
+            <camera name="camera_front">
+                <horizontal_fov>1.0472</horizontal_fov>
+                <lens>
+                    <intrinsics>
+                        <!-- fx = fy = width / ( 2 * tan (hfov / 2 ) ) -->
+                        <fx>554.3</fx>
+                        <fy>554.3</fy>
+                        <!-- cx = ( width + 1 ) / 2 -->
+                        <cx>320.5</cx>
+                        <!-- cy = ( height + 1 ) / 2 -->
+                        <cy>240.5</cy>
+                        <s>0</s>
+                    </intrinsics>
+                </lens>
+                <distortion>
+                    <k1>0.0</k1>
+                    <k2>0.0</k2>
+                    <k3>0.0</k3>
+                    <p1>0.0</p1>
+                    <p2>0.0</p2>
+                    <center>0.5 0.5</center>
+                </distortion>
+                <image>
+                    <width>640</width>
+                    <height>480</height>
+                    <format>R8G8B8</format>
+                </image>
+                <clip>
+                    <near>0.01</near>
+                    <far>300</far>
+                </clip>
+                <depth_camera>
+                    <clip>
+                    <near>0.1</near>
+                    <far>10</far>
+                    </clip>
+                </depth_camera>
+                <noise>
+                    <type>gaussian</type>
+                    <mean>0</mean>
+                    <stddev>0.007</stddev>
+                </noise>
+            </camera>
+        </sensor>
     
     </link>
   </model>

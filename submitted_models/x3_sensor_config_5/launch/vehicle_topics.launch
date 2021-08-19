@@ -109,8 +109,32 @@
       <remap from="input/camera_info" to="depth_camera_right/camera_info" />
       <remap from="output/camera_info" to="depth_camera_right/optical/camera_info" />
     </node>
+    <!-- RGBD TODO: STILL DOESNT WORK-->
+      <!--
+      <node
+        pkg="ros_ign_bridge"
+        type="parameter_bridge"
+        name="ros_ign_bridge_rgbd"
+        args="$(arg sensor_prefix)/camera_front/points@sensor_msgs/PointCloud2[ignition.msgs.PointCloudPacked">
+        <remap from="$(arg sensor_prefix)/camera_front/points" to="rgbd_camera/depth/points"/>
+      </node>
+      <node
+        pkg="ros_ign_image"
+        type="image_bridge"
+        name="ros_ign_image_depth"
+        args="$(arg sensor_prefix)/camera_front/depth_image">
+        <remap from="$(arg sensor_prefix)/camera_front/depth_image" to="front/depth"/>
+      </node>
 
-    
+      <node
+        pkg="subt_ros"
+        type="optical_frame_publisher"
+        name="optical_frame_publisher_depth"
+        args="depth">
+        <remap from="input/image" to="front/depth" />
+        <remap from="output/image" to="front/optical/depth" />
+      </node>-->
+
 
     <node
       pkg="subt_ros"
