@@ -1,0 +1,144 @@
+<?xml version="1.0"?>
+<launch>
+  <env name="IGN_TRANSPORT_TOPIC_STATISTICS" value="1"/>
+  <arg name="world_name"/>
+  <arg name="name"/>
+  <arg name="link_name" value="base_link"/>
+  <arg name="sensor_prefix" value="/world/$(arg world_name)/model/$(arg name)/link/$(arg link_name)/sensor"/>
+  <arg name="uav" default="0"/>
+  <arg name="stereo_cam" default="0"/>
+  <arg name="laser_scan" default="1"/>
+  <arg name="top_scan" default="0"/>
+  <arg name="bottom_scan" default="0"/>
+  <arg name="rgbd_cam" default="0"/>
+  <arg name="lidar_3d" default="0"/>
+  <group ns="$(arg name)">
+    <!--Create multipe bridges so that it can run in parallel-->
+    <node
+      pkg="ros_ign_bridge"
+      type="parameter_bridge"
+      name="ros_ign_bridge_imu"
+      args="$(arg sensor_prefix)/imu_sensor/imu@sensor_msgs/Imu[ignition.msgs.IMU">
+      <remap from="$(arg sensor_prefix)/imu_sensor/imu" to="imu/data"/>
+    </node>
+    <node
+      pkg="ros_ign_bridge"
+      type="parameter_bridge"
+      name="ros_ign_bridge_pose"
+      args="/model/$(arg name)/pose@tf2_msgs/TFMessage[ignition.msgs.Pose_V">
+      <remap from="/model/$(arg name)/pose" to="pose"/>
+    </node>
+    <node
+      pkg="ros_ign_bridge"
+      type="parameter_bridge"
+      name="ros_ign_bridge_pose_static"
+      args="/model/$(arg name)/pose_static@tf2_msgs/TFMessage[ignition.msgs.Pose_V">
+      <remap from="/model/$(arg name)/pose_static" to="pose_static"/>
+    </node>
+    <node
+      pkg="ros_ign_bridge"
+      type="parameter_bridge"
+      name="ros_ign_bridge_twist"
+      args="/model/$(arg name)/cmd_vel@geometry_msgs/Twist]ignition.msgs.Twist">
+      <remap from="/model/$(arg name)/cmd_vel" to="cmd_vel"/>
+    </node>
+    <!-- LIDAR -->
+    <node
+      pkg="ros_ign_bridge"
+      type="parameter_bridge"
+      name="ros_ign_bridge_lidar3d"
+      args="$(arg sensor_prefix)/top_lidar/scan/points@sensor_msgs/PointCloud2[ignition.msgs.PointCloudPacked">
+      <remap from="$(arg sensor_prefix)/top_lidar/scan/points" to="top_lidar/points"/>
+    </node>
+    <!-- CAMERA -->
+    <node
+        pkg="ros_ign_bridge"
+        type="parameter_bridge"
+        name="ros_ign_bridge_camera"
+        args="$(arg sensor_prefix)/camera_left/camera_info@sensor_msgs/CameraInfo[ignition.msgs.CameraInfo">
+        <remap from="$(arg sensor_prefix)/camera_left/camera_info" to="left/camera_info"/>
+    </node>    
+    <node
+        pkg="ros_ign_image"
+        type="image_bridge"
+        name="ros_ign_image_camera"
+        args="$(arg sensor_prefix)/camera_left/image">
+        <remap from="$(arg sensor_prefix)/camera_left/image" to="left/image_raw"/>
+    </node>
+    <node
+      pkg="subt_ros"
+      type="optical_frame_publisher"
+      name="optical_frame_publisher">
+      <remap from="input/image" to="left/image_raw" />
+      <remap from="output/image" to="left/optical/image_raw" />
+      <remap from="input/camera_info" to="left/camera_info" />
+      <remap from="output/camera_info" to="left/optical/camera_info" />
+    </node>
+<!-- DEPTH CAMERA-->
+    <!-- Depth camera:Point cloud-->
+    <node
+      pkg="ros_ign_bridge"
+      type="parameter_bridge"
+      name="ros_ign_bridge_depth_camera_right"
+      args="$(arg sensor_prefix)/depth_camera_right/depth_image/points@sensor_msgs/PointCloud2[ignition.msgs.PointCloudPacked">
+      <remap from="$(arg sensor_prefix)/depth_camera_right/depth_image/points" to="depth_camera_right/depth/points"/>
+    </node>
+    <!-- Depth camera:Depth image-->
+    <node
+      pkg="ros_ign_image"
+      type="image_bridge"
+      name="ros_ign_image_depth_camera_right"
+      args="$(arg sensor_prefix)/depth_camera_right/depth_image">
+      <remap from="$(arg sensor_prefix)/depth_camera_right/depth_image" to="depth_camera_right/depth"/>
+    </node>
+    <!-- Depth camera:Depth image parameters-->
+    <node
+      pkg="ros_ign_bridge"
+      type="parameter_bridge"
+      name="ros_ign_bridge_depth_camera_right_info"
+      args="$(arg sensor_prefix)/depth_camera_right/camera_info@sensor_msgs/CameraInfo[ignition.msgs.CameraInfo">
+      <remap from="$(arg sensor_prefix)/depth_camera_right/camera_info" to="depth_camera_right/camera_info"/>
+    </node>
+    <!-- Depth camera:Optical frame publisher-->
+    <node
+      pkg="subt_ros"
+      type="optical_frame_publisher"
+      name="optical_frame_publisher_depth_camera_right_depth">
+      <remap from="input/image" to="depth_camera_right/depth" />
+      <remap from="output/image" to="depth_camera_right/optical/depth" />
+      <remap from="input/camera_info" to="depth_camera_right/camera_info" />
+      <remap from="output/camera_info" to="depth_camera_right/optical/camera_info" />
+    </node>
+    <!-- RGBD TODO: STILL DOESNT WORK-->
+      <!--
+      <node
+        pkg="ros_ign_bridge"
+        type="parameter_bridge"
+        name="ros_ign_bridge_rgbd"
+        args="$(arg sensor_prefix)/camera_front/points@sensor_msgs/PointCloud2[ignition.msgs.PointCloudPacked">
+        <remap from="$(arg sensor_prefix)/camera_front/points" to="rgbd_camera/depth/points"/>
+      </node>
+      <node
+        pkg="ros_ign_image"
+        type="image_bridge"
+        name="ros_ign_image_depth"
+        args="$(arg sensor_prefix)/camera_front/depth_image">
+        <remap from="$(arg sensor_prefix)/camera_front/depth_image" to="front/depth"/>
+      </node>
+
+      <node
+        pkg="subt_ros"
+        type="optical_frame_publisher"
+        name="optical_frame_publisher_depth"
+        args="depth">
+        <remap from="input/image" to="front/depth" />
+        <remap from="output/image" to="front/optical/depth" />
+      </node>-->
+
+
+    <node
+      pkg="subt_ros"
+      type="pose_tf_broadcaster"
+      name="pose_tf_broadcaster"/>
+  </group>
+</launch>
