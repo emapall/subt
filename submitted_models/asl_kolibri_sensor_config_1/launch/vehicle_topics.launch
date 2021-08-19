@@ -170,8 +170,8 @@
         args="$(arg sensor_prefix)/front_laser/scan@sensor_msgs/LaserScan[ignition.msgs.LaserScan">
         <remap from="$(arg sensor_prefix)/front_laser/scan" to="front_scan"/>
       </node>
-    </group>
-
+    <!-- INSERT THE BPEARL IF NEEDED FOR EXAMPLE -->
+  </group>
     <!-- top scan -->
     <group if="$(arg top_scan)">
       <node
