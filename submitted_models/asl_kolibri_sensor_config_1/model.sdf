@@ -30,7 +30,7 @@
       </visual>
 
       <light name="right_light_source" type="spot">
-        <pose frame="">0.2 -0.2 0.05 3.131592653589795 -1.5107899999999999 2.841592653589791</pose>
+        <pose frame="">0.2 0.2 0.05 3.131592653589795 -1.5107899999999999 1.37079633</pose>
         <attenuation>
             <range>15</range>
             <linear>0</linear>
@@ -49,7 +49,7 @@
       </light>
     
       <light name="left_light_source" type="spot">
-        <pose frame="">0.2 0.2 0.05 3.131592653589795 -1.5107899999999999 -2.841592653589791</pose>
+        <pose frame="">0.2 0.2 0.05 3.131592653589795 -1.5107899999999999 -1.37079633</pose>
         <attenuation>
             <range>15</range>
             <linear>0</linear>
@@ -68,7 +68,7 @@
       </light>
 
       <light name="front_light_source" type="spot">
-        <pose frame="">0.2 0 0.05 3.131592653589795 -1.5107899999999999 0</pose>
+        <pose frame="">0.3 0 -0.05 3.131592653589795 -1.5107899999999999 3.141592659999</pose>
         <attenuation>
             <range>15</range>
             <linear>0</linear>
