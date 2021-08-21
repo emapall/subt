@@ -356,7 +356,7 @@
 
 
       <sensor name="camera_back_left" type="camera">
-        <pose>-.3 -1 1 0 0.174533 1.5707963</pose>
+        <pose>-.3 -1 1 0 0.090000 2.35619449</pose>
         <always_on>1</always_on>
         <update_rate>20</update_rate>
         <camera name="camera_back_left">
