@@ -5,7 +5,7 @@ using namespace ignition;
 using namespace gazebo;
 using namespace sample_system;
 
-math::Vector3d sent_linear(1,2,0);
+math::Vector3d sent_linear(0,0,0);
 math::Vector3d sent_angular(0,0,0);
 
 void msg_cb(const ignition::msgs::Twist &_msg){
@@ -38,6 +38,7 @@ void SampleSystem::PreUpdate(const UpdateInfo &_info, EntityComponentManager &_e
     //ignmsg<<pos;
   }
   //ignmsg<<"Adding this wrench\n";
+  //std::cout<<"Cmd "<<sent_linear<<" "<<sent_angular<<"\n";
   this->base_link.AddWorldWrench(_ecm_non_const,sent_linear,sent_angular);
   
 }
@@ -56,7 +57,7 @@ void SampleSystem::Configure(const Entity &_entity,
             <<"\n!!!!!!!!!!!!!!!!!\n"<<model.Name(_ecm);
   this->base_link = ignition::gazebo::Link(model.LinkByName(_ecm,"base_link"));
   ignmsg<<base_link.Name(_ecm).value();
-  if (!this->_nh.Subscribe("/kolibri/cmd_vel",msg_cb))
+  if (!this->_nh.Subscribe("/model/kolibri/cmd_vel",msg_cb))
   {
     std::cerr << "Error subscribing to topic [" << "/kolibri/cmd_vel" << "]" << std::endl;
   }

@@ -513,7 +513,7 @@
           
     </link>
 
-    <plugin filename="/home/arl/subt_ws/src/subt/submitted_models/asl_kolibri_ignition_gazebo_plugin_1/lib/libSampleSystem.so"
+    <plugin filename="libSampleSystem.so"
     name="sample_system::SampleSystem">
     </plugin>  
   </model>
