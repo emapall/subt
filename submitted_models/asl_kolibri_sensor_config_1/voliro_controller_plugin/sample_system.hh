@@ -30,13 +30,14 @@ namespace sample_system
     public: void PostUpdate(const UpdateInfo &_info,
                 const EntityComponentManager &_ecm) override;
 
+
     private:
       ignition::gazebo::Link base_link;
       math::Vector3d tgt_vel=math::Vector3d(1,1,1);
       math::Vector3d tgt_twist=math::Vector3d(1,1,1);
       float k_prop = 0.1;
       ignition::transport::Node _nh;
-  
+    
   };
 }
 

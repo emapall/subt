@@ -5,6 +5,13 @@ using namespace ignition;
 using namespace gazebo;
 using namespace sample_system;
 
+math::Vector3d sent_linear(1,2,0);
+math::Vector3d sent_angular(0,0,0);
+
+void msg_cb(const ignition::msgs::Twist &_msg){
+  sent_linear=math::Vector3d(_msg.linear().x(),_msg.linear().y(),_msg.linear().z());
+  sent_angular=math::Vector3d(_msg.linear().x(),_msg.linear().y(),_msg.linear().z());
+}
 
 SampleSystem::SampleSystem() {
 }
@@ -29,16 +36,13 @@ void SampleSystem::PreUpdate(const UpdateInfo &_info, EntityComponentManager &_e
     //Entity link_ent = this->base_link.Entity();
     //auto pos = _ecm.Component<components::WorldPose>(link_ent);
     //ignmsg<<pos;
-    std::cout<<".";
   }
   //ignmsg<<"Adding this wrench\n";
-  this->base_link.AddWorldWrench(_ecm_non_const,math::Vector3d(1,2,0),math::Vector3d(3,3,3));
+  this->base_link.AddWorldWrench(_ecm_non_const,sent_linear,sent_angular);
   
 }
 
 void SampleSystem::PostUpdate(const UpdateInfo &_info, const EntityComponentManager &_ecm) {
-
-
 }
 
 void SampleSystem::Configure(const Entity &_entity,
@@ -52,5 +56,10 @@ void SampleSystem::Configure(const Entity &_entity,
             <<"\n!!!!!!!!!!!!!!!!!\n"<<model.Name(_ecm);
   this->base_link = ignition::gazebo::Link(model.LinkByName(_ecm,"base_link"));
   ignmsg<<base_link.Name(_ecm).value();
+  if (!this->_nh.Subscribe("/kolibri/cmd_vel",msg_cb))
+  {
+    std::cerr << "Error subscribing to topic [" << "/kolibri/cmd_vel" << "]" << std::endl;
+  }
+
 }
 
