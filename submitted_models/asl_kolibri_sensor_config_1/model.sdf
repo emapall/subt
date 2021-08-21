@@ -49,7 +49,7 @@
       </light>
     
       <light name="left_light_source" type="spot">
-        <pose frame="">0.2 0.2 0.05 0 -0.78539816 -1.57079633</pose>
+        <pose frame="">0.2 -0.2 0.05 3.131592653589795 -1.5107899999999999 -1.870796333</pose>
         <attenuation>
             <range>15</range>
             <linear>0</linear>
