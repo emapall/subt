@@ -1,13 +1,17 @@
-cmake_minimum_required(VERSION 2.8.3)
-project(asl_kolibri_sensor_config_1)
+cmake_minimum_required(VERSION 3.10.2 FATAL_ERROR)
+find_package(ignition-cmake2 REQUIRED)
+project(SampleSystem)
 
-find_package(catkin REQUIRED)
+find_package(ignition-plugin1 REQUIRED COMPONENTS register)
+find_package(ignition-transport8 QUIET REQUIRED OPTIONAL_COMPONENTS log)
 
-catkin_package()
+set(IGN_PLUGIN_VER ${ignition-plugin1_VERSION_MAJOR})
+find_package(ignition-gazebo4 REQUIRED)
+add_library(SampleSystem SHARED voliro_controller_plugin/sample_system.cc )
+set_property(TARGET SampleSystem PROPERTY CXX_STANDARD 17)
+target_link_libraries(SampleSystem
+  PRIVATE ignition-plugin${IGN_PLUGIN_VER}::ignition-plugin${IGN_PLUGIN_VER}
+  PRIVATE ignition-gazebo4::ignition-gazebo4)
 
-install(DIRECTORY launch meshes urdf materials
-  DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION})
-
-install(FILES model.sdf model.config
-  DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION})
-
+install(FILES ../../../../devel/lib/libSampleSystem.so
+  DESTINATION lib)
