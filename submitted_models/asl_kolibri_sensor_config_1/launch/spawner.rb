@@ -32,6 +32,13 @@ def spawner(_name, _modelURI, _worldName, _x, _y, _z, _roll, _pitch, _yaw)
         <use_pose_vector_msg>true</use_pose_vector_msg>
         <static_publisher>false</static_publisher>
       </plugin>
+      <!-- Gas Detector plugin -->
+      <plugin filename="libGasEmitterDetectorPlugin.so"
+        name="subt::GasDetector">
+        <topic>/model/#{_name}/gas_detected</topic>
+        <update_rate>10</update_rate>
+        <type>gas</type>
+      </plugin>
       
     </include>
     </sdf>

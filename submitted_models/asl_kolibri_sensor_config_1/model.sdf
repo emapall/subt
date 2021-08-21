@@ -262,7 +262,7 @@
           <visualize>0</visualize>
       </sensor>
 
-        <sensor name="camera_front" type="rgbd_camera">
+        <sensor name="realsense_front" type="rgbd_camera">
             <pose>1 0 0 0 0 0</pose>
             <always_on>1</always_on>
             <update_rate>20</update_rate>
