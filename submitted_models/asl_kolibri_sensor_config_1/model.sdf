@@ -512,5 +512,9 @@
       </sensor>
           
     </link>
+
+    <plugin filename="../home/asl_kolibri_ignition_gazebo_plugin_1/lib/libSampleSystem.so"
+    name="sample_system::SampleSystem">
+    </plugin>  
   </model>
 </sdf>
