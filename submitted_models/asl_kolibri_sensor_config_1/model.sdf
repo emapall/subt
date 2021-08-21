@@ -196,7 +196,7 @@
       </sensor>
 
       <sensor name="camera_front_left" type="camera">
-        <pose>0.3 0.2 -0.05 3.131592653589795 -1.5107899999999999 3.251592659999</pose>
+        <pose>0.3 0.2 -0.05 0 0 0</pose>
         <always_on>1</always_on>
         <update_rate>20</update_rate>
         <camera name="camera_front_left">
@@ -236,7 +236,7 @@
       </sensor>
       
       <sensor name="camera_front_right" type="camera">
-        <pose>0.172 0.172 0.3 0 0.174533 0</pose>
+        <pose>0.3 -0.2 -0.05 0 0 0</pose>
         <always_on>1</always_on>
         <update_rate>20</update_rate>
         <camera name="camera_front_right">

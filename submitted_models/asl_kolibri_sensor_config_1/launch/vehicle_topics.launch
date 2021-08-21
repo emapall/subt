@@ -69,7 +69,7 @@
       <node
         pkg="subt_ros"
         type="optical_frame_publisher"
-        name="optical_frame_publisher">
+        name="optical_frame_publisher_camera_front_left">
         <remap from="input/image" to="camera_front_left/image_raw" />
         <remap from="output/image" to="camera_front_left/optical/image_raw" />
         <remap from="input/camera_info" to="camera_front_left/camera_info" />
@@ -94,7 +94,7 @@
       <node
       pkg="subt_ros"
       type="optical_frame_publisher"
-      name="optical_frame_publisher">
+      name="optical_frame_publisher_camera_front_right">
       <remap from="input/image" to="camera_front_right/image_raw" />
       <remap from="output/image" to="camera_front_right/optical/image_raw" />
       <remap from="input/camera_info" to="camera_front_right/camera_info" />
