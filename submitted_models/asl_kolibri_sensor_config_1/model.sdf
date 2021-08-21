@@ -30,7 +30,7 @@
       </visual>
 
       <light name="right_light_source" type="spot">
-        <pose frame="">0.2 0.2 0.05 3.131592653589795 -1.5107899999999999 1.37079633</pose>
+        <pose frame="">0.2 0.2 0.05 3.131592653589795 -1.5107899999999999 1.87079633</pose>
         <attenuation>
             <range>15</range>
             <linear>0</linear>
@@ -49,7 +49,7 @@
       </light>
     
       <light name="left_light_source" type="spot">
-        <pose frame="">0.2 0.2 0.05 3.131592653589795 -1.5107899999999999 -1.37079633</pose>
+        <pose frame="">0.2 0.2 0.05 3.131592653589795 -1.5107899999999999 -1.87079633</pose>
         <attenuation>
             <range>15</range>
             <linear>0</linear>
@@ -195,45 +195,46 @@
         <pose frame="">0.27 0 0.2676 0 -0 0</pose>
       </sensor>
 
-            <sensor name="camera_left" type="camera">
-                <pose>0.172 0.172 0.3 0 0.174533 0</pose>
-                <always_on>1</always_on>
-                <update_rate>20</update_rate>
-                <camera name="camera_left">
-                    <horizontal_fov>2.0944</horizontal_fov>
-                    <lens>
-                        <intrinsics>
-                            <fx>1108.952913</fx>
-                            <fy>1110.658360</fy>
-                            <cx>729.533992</cx>
-                            <cy>544.985715</cy>
-                            <s>1</s>
-                        </intrinsics>
-                    </lens>
-                    <distortion>
-                        <k1>0.0</k1>
-                        <k2>0.0</k2>
-                        <k3>0.0</k3>
-                        <p1>0.0</p1>
-                        <p2>0.0</p2>
-                        <center>0.5 0.5</center>
-                    </distortion>
-                    <image>
-                        <width>1440</width>
-                        <height>1080</height>
-                        <format>R8G8B8</format>
-                    </image>
-                    <clip>
-                        <near>0.02</near>
-                        <far>100</far>
-                    </clip>
-                    <noise>
-                        <type>gaussian</type>
-                        <mean>0</mean>
-                        <stddev>0.007</stddev>
-                    </noise>
-                </camera>
-            </sensor>
+      <sensor name="camera_front_left" type="camera">
+        <pose>0.3 0.2 -0.05 3.131592653589795 -1.5107899999999999 3.251592659999</pose>
+        <always_on>1</always_on>
+        <update_rate>20</update_rate>
+        <camera name="camera_front_left">
+            <horizontal_fov>2.0944</horizontal_fov>
+            <lens>
+                <intrinsics>
+                    <fx>1108.952913</fx>
+                    <fy>1110.658360</fy>
+                    <cx>729.533992</cx>
+                    <cy>544.985715</cy>
+                    <s>1</s>
+                </intrinsics>
+            </lens>
+            <distortion>
+                <k1>0.0</k1>
+                <k2>0.0</k2>
+                <k3>0.0</k3>
+                <p1>0.0</p1>
+                <p2>0.0</p2>
+                <center>0.5 0.5</center>
+            </distortion>
+            <image>
+                <width>1440</width>
+                <height>1080</height>
+                <format>R8G8B8</format>
+            </image>
+            <clip>
+                <near>0.02</near>
+                <far>100</far>
+            </clip>
+            <noise>
+                <type>gaussian</type>
+                <mean>0</mean>
+                <stddev>0.007</stddev>
+            </noise>
+        </camera>
+      </sensor>
+      
     <!-- DEPTH CAMERA-->
       <sensor name="depth_camera_right" type="depth_camera">
           <pose>0.172 0.172 0.3 0 0.174533 0</pose>
