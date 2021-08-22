@@ -1,9 +1,9 @@
-#include "sample_system.hh"
+#include "kolibri_controller.hh"
 #include <stdio.h>
 
 using namespace ignition;
 using namespace gazebo;
-using namespace sample_system;
+using namespace kolibri_controller;
 
 math::Vector3d target_linear(0.,0.,0.);
 math::Vector3d target_angular(0.,0.,0.);
@@ -25,13 +25,13 @@ void odom_callback(const ignition::msgs::Pose &_msg){
 }
 */
 
-SampleSystem::SampleSystem() {
+KolibriController::KolibriController() {
 }
 
-SampleSystem::~SampleSystem() {
+KolibriController::~KolibriController() {
 }
 
-void SampleSystem::PreUpdate(const UpdateInfo &_info, EntityComponentManager &_ecm) {
+void KolibriController::PreUpdate(const UpdateInfo &_info, EntityComponentManager &_ecm) {
   EntityComponentManager &_ecm_non_const = const_cast<EntityComponentManager&>(_ecm);
   
   if(_info.paused)
@@ -65,7 +65,7 @@ void SampleSystem::PreUpdate(const UpdateInfo &_info, EntityComponentManager &_e
   
 }
 
-void SampleSystem::PostUpdate(const UpdateInfo &_info, const EntityComponentManager &_ecm) {
+void KolibriController::PostUpdate(const UpdateInfo &_info, const EntityComponentManager &_ecm) {
 
   if(this->base_link.WorldPose(_ecm).has_value()){
     _linear_vel = this->base_link.WorldLinearVelocity(_ecm).value();
@@ -73,7 +73,7 @@ void SampleSystem::PostUpdate(const UpdateInfo &_info, const EntityComponentMana
   }
 }
 
-void SampleSystem::Configure(const Entity &_entity,
+void KolibriController::Configure(const Entity &_entity,
                          const std::shared_ptr<const sdf::Element> &_sdf,
                          EntityComponentManager &_ecm,
                          EventManager &/*_eventMgr*/) {

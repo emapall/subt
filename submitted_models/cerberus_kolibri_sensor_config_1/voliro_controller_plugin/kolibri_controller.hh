@@ -10,9 +10,9 @@
 using namespace ignition;
 using namespace gazebo;
 
-namespace sample_system
+namespace kolibri_controller
 {
-  class SampleSystem:
+  class KolibriController:
     // This class is a system.
     public System,
     // This class also implements the ISystemPostUpdate interface.
@@ -20,8 +20,8 @@ namespace sample_system
     public ISystemPreUpdate,
     public ISystemPostUpdate
   {
-    public: SampleSystem();
-    public: ~SampleSystem() override;
+    public: KolibriController();
+    public: ~KolibriController() override;
     public: void Configure(const Entity &_entity,
                          const std::shared_ptr<const sdf::Element> &_sdf,
                          EntityComponentManager &_ecm,
@@ -46,7 +46,7 @@ namespace sample_system
     
       // Velocity and acceleration constraints
       const math::Vector3d _max_vel = math::Vector3d(0.53, 0.46, 0.46);
-      const math::Vector3d _max_angular_vel = math::Vector3d(0., 0., 1.); // Platform cannot roll. Pitch was disabled in the SubT Systems track version due to odometry reliability issues.
+      const math::Vector3d _max_angular_vel = math::Vector3d(0., 0., 1.06); // Platform cannot roll. Pitch was disabled in the SubT Systems track version due to odometry reliability issues.
       
       const math::Vector3d _max_acc = math::Vector3d(0.96, 1.07, 3.5);
       const math::Vector3d _max_angular_acc = math::Vector3d(0., 0., 0.5); 
@@ -57,8 +57,8 @@ namespace sample_system
 #include <ignition/plugin/Register.hh>
 // Include a line in your source file for each interface implemented.
 IGNITION_ADD_PLUGIN(
-    sample_system::SampleSystem,
+    kolibri_controller::KolibriController,
     System,
-    sample_system::SampleSystem::ISystemConfigure,
-    sample_system::SampleSystem::ISystemPreUpdate,
-    sample_system::SampleSystem::ISystemPostUpdate)
+    kolibri_controller::KolibriController::ISystemConfigure,
+    kolibri_controller::KolibriController::ISystemPreUpdate,
+    kolibri_controller::KolibriController::ISystemPostUpdate)

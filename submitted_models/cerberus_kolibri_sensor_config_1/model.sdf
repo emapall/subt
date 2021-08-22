@@ -436,8 +436,8 @@
           
     </link>
 
-    <plugin filename="libSampleSystem.so"
-    name="sample_system::SampleSystem">
+    <plugin filename="libKolibriController.so"
+    name="kolibri_controller::KolibriController">
     <update_rate>20</update_rate>
     </plugin>  
   </model>
