@@ -1,12 +1,12 @@
 <?xml version="1.0"?>
 <package format="2">
-  <name>asl_kolibri_sensor_config_1</name>
+  <name>cerberus_kolibri_sensor_config_1</name>
   <version>0.1.0</version>
   <description>
-    The asl_kolibri_sensor_config_1 package derived from x3_sensor_config_5 (https://bitbucket.org/osrf/subt/wiki/robots) with the addition of LIDAR Lite v3 (http://static.garmin.com/pumac/LIDAR_Lite_v3_Operation_Manual_and_Technical_Specifications.pdf) sensors, used for floor/ceiling detection, to the top/bottom of the platform.
+    The cerberus_kolibri_sensor_config_1 package, a customized Voliro OMAV outfitted with an OS0 lidar, 6 cameras and imu. The package is loosely derived from the cerberus_m100_sensor_config_1 and cerberus_anymal packages.
   </description>
-  <maintainer email="arthur.schang@parsons.com">Arthur Schang</maintainer>
-  <author email="arthur.schang@parsons.com">Arthur Schang</author>
+  <maintainer email="olov.andersson@gmail.com">Olov Andersson</maintainer>
+  <author email="olov.andersson@gmail.com">Olov Andersson</author>
 
   <license>BSD</license>
 
