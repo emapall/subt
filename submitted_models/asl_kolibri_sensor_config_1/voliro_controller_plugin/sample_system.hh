@@ -33,10 +33,23 @@ namespace sample_system
 
     private:
       ignition::gazebo::Link base_link;
-      math::Vector3d tgt_vel=math::Vector3d(1,1,1);
-      math::Vector3d tgt_twist=math::Vector3d(1,1,1);
-      float k_prop = 0.1;
+//      math::Vector3d tgt_vel=math::Vector3d(1,1,1);
+//      math::Vector3d tgt_twist=math::Vector3d(1,1,1);
+      math::Vector3d _linear_vel;
+      math::Vector3d _angular_vel;
+
       ignition::transport::Node _nh;
+
+      double _K_prop = 10.0;
+      double _K_prop2 = 5.0;
+      double _mass = 5.7, _ixx = 0.59, _iyy = 0.59, _izz = 0.95;
+    
+      // Velocity and acceleration constraints
+      const math::Vector3d _max_vel = math::Vector3d(0.53, 0.46, 0.46);
+      const math::Vector3d _max_angular_vel = math::Vector3d(0., 0., 1.); // Platform cannot roll. Pitch was disabled in the SubT Systems track version due to odometry reliability issues.
+      
+      const math::Vector3d _max_acc = math::Vector3d(0.96, 1.07, 3.5);
+      const math::Vector3d _max_angular_acc = math::Vector3d(0., 0., 0.5); 
     
   };
 }

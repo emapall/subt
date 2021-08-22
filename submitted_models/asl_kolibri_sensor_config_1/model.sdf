@@ -5,15 +5,15 @@
     <static>false</static>
     <link name="base_link">
       <inertial>
-        <mass>1.0</mass>
+        <mass>5.7</mass>
         <inertia> <!-- inertias are tricky to compute -->
           <!-- http://gazebosim.org/tutorials?tut=inertia&cat=build_robot -->
-          <ixx>0.083</ixx>       <!-- for a box: ixx = 0.083 * mass * (y*y + z*z) -->
+          <ixx>0.59</ixx>       <!-- for a box: ixx = 0.083 * mass * (y*y + z*z) -->
           <ixy>0.0</ixy>         <!-- for a box: ixy = 0 -->
           <ixz>0.0</ixz>         <!-- for a box: ixz = 0 -->
-          <iyy>0.083</iyy>       <!-- for a box: iyy = 0.083 * mass * (x*x + z*z) -->
+          <iyy>0.59</iyy>       <!-- for a box: iyy = 0.083 * mass * (x*x + z*z) -->
           <iyz>0.0</iyz>         <!-- for a box: iyz = 0 -->
-          <izz>0.083</izz>       <!-- for a box: izz = 0.083 * mass * (x*x + y*y) -->
+          <izz>0.95</izz>       <!-- for a box: izz = 0.083 * mass * (x*x + y*y) -->
         </inertia>
       </inertial>
       <collision name="collision">
@@ -23,7 +23,7 @@
       </collision>
       <visual name="base_link_visual">
         <geometry>
-          <mesh><uri>meshes/voliro_t.stl</uri></mesh>
+          <mesh><uri>meshes/voliro_t.dae</uri></mesh>
         </geometry>
       </visual>
 
@@ -161,7 +161,7 @@
         </imu>
       </sensor>
       
-      <sensor name="top_lidar" type="gpu_lidar">
+      <sensor name="top_lidar" type="gpu_lidar"> <!-- OS0 -->
         <visualize>0</visualize>
         <update_rate>10</update_rate>
         <lidar>
@@ -173,10 +173,10 @@
               <max_angle>3.1459</max_angle>
             </horizontal>
             <vertical>
-              <samples>16</samples>
+              <samples>64</samples>
               <resolution>1</resolution>
-              <min_angle>-0.261799</min_angle>
-              <max_angle>0.261799</max_angle>
+              <min_angle>-0.785398</min_angle>
+              <max_angle>0.785398</max_angle>
             </vertical>
           </scan>
           <range>
@@ -198,7 +198,7 @@
         <always_on>1</always_on>
         <update_rate>20</update_rate>
         <camera name="camera_front_left">
-            <horizontal_fov>2.0944</horizontal_fov>
+            <horizontal_fov>1.9</horizontal_fov>
             <lens>
                 <intrinsics>
                     <fx>1108.952913</fx>
@@ -217,8 +217,8 @@
                 <center>0.5 0.5</center>
             </distortion>
             <image>
-                <width>1440</width>
-                <height>1080</height>
+                <width>728</width>
+                <height>544</height>
                 <format>R8G8B8</format>
             </image>
             <clip>
@@ -238,7 +238,7 @@
         <always_on>1</always_on>
         <update_rate>20</update_rate>
         <camera name="camera_front_right">
-            <horizontal_fov>2.0944</horizontal_fov>
+            <horizontal_fov>1.9</horizontal_fov>
             <lens>
                 <intrinsics>
                     <fx>1108.952913</fx>
@@ -257,8 +257,8 @@
                 <center>0.5 0.5</center>
             </distortion>
             <image>
-                <width>1440</width>
-                <height>1080</height>
+                <width>728</width>
+                <height>544</height>
                 <format>R8G8B8</format>
             </image>
             <clip>
@@ -277,7 +277,7 @@
         <always_on>1</always_on>
         <update_rate>20</update_rate>
         <camera name="camera_down">
-            <horizontal_fov>2.0944</horizontal_fov>
+            <horizontal_fov>1.9</horizontal_fov>
             <lens>
                 <intrinsics>
                     <fx>1108.952913</fx>
@@ -296,8 +296,8 @@
                 <center>0.5 0.5</center>
             </distortion>
             <image>
-                <width>1440</width>
-                <height>1080</height>
+                <width>728</width>
+                <height>544</height>
                 <format>R8G8B8</format>
             </image>
             <clip>
@@ -312,53 +312,12 @@
         </camera>
       </sensor>
     
-      <sensor name="camera_front" type="camera">
-        <pose>0.1 0.0 -0.05 0 0.174533 0</pose>
-        <always_on>1</always_on>
-        <update_rate>20</update_rate>
-        <camera name="camera_front">
-            <horizontal_fov>2.0944</horizontal_fov>
-            <lens>
-                <intrinsics>
-                    <fx>1108.952913</fx>
-                    <fy>1110.658360</fy>
-                    <cx>729.533992</cx>
-                    <cy>544.985715</cy>
-                    <s>1</s>
-                </intrinsics>
-            </lens>
-            <distortion>
-                <k1>0.0</k1>
-                <k2>0.0</k2>
-                <k3>0.0</k3>
-                <p1>0.0</p1>
-                <p2>0.0</p2>
-                <center>0.5 0.5</center>
-            </distortion>
-            <image>
-                <width>1440</width>
-                <height>1080</height>
-                <format>R8G8B8</format>
-            </image>
-            <clip>
-                <near>0.02</near>
-                <far>100</far>
-            </clip>
-            <noise>
-                <type>gaussian</type>
-                <mean>0</mean>
-                <stddev>0.007</stddev>
-            </noise>
-        </camera>
-      </sensor>
-
-
       <sensor name="camera_back_left" type="camera">
         <pose>-.3 0.1 -0.05 0 0.090000 2.35619449</pose>
         <always_on>1</always_on>
         <update_rate>20</update_rate>
         <camera name="camera_back_left">
-            <horizontal_fov>2.0944</horizontal_fov>
+            <horizontal_fov>1.9</horizontal_fov>
             <lens>
                 <intrinsics>
                     <fx>1108.952913</fx>
@@ -377,8 +336,8 @@
                 <center>0.5 0.5</center>
             </distortion>
             <image>
-                <width>1440</width>
-                <height>1080</height>
+                <width>728</width>
+                <height>544</height>
                 <format>R8G8B8</format>
             </image>
             <clip>
@@ -392,13 +351,54 @@
             </noise>
         </camera>
       </sensor>
+
+      <sensor name="camera_back_left2" type="camera">
+        <pose>-.3 0.1 -0.02 0 0.090000 2.35619449</pose>
+        <always_on>1</always_on>
+        <update_rate>20</update_rate>
+        <camera name="camera_back_left2">
+            <horizontal_fov>1.9</horizontal_fov>
+            <lens>
+                <intrinsics>
+                    <fx>1108.952913</fx>
+                    <fy>1110.658360</fy>
+                    <cx>729.533992</cx>
+                    <cy>544.985715</cy>
+                    <s>1</s>
+                </intrinsics>
+            </lens>
+            <distortion>
+                <k1>0.0</k1>
+                <k2>0.0</k2>
+                <k3>0.0</k3>
+                <p1>0.0</p1>
+                <p2>0.0</p2>
+                <center>0.5 0.5</center>
+            </distortion>
+            <image>
+                <width>728</width>
+                <height>544</height>
+                <format>R8G8B8</format>
+            </image>
+            <clip>
+                <near>0.02</near>
+                <far>100</far>
+            </clip>
+            <noise>
+                <type>gaussian</type>
+                <mean>0</mean>
+                <stddev>0.007</stddev>
+            </noise>
+        </camera>
+      </sensor>
+
 
       <sensor name="camera_back_right" type="camera">
         <pose>-.3 -0.1 -0.05 0 0.090000 -2.35619449</pose>
         <always_on>1</always_on>
         <update_rate>20</update_rate>
         <camera name="camera_back_right">
-            <horizontal_fov>2.0944</horizontal_fov>
+            <horizontal_fov>1.9</horizontal_fov>
             <lens>
                 <intrinsics>
                     <fx>1108.952913</fx>
@@ -417,8 +417,8 @@
                 <center>0.5 0.5</center>
             </distortion>
             <image>
-                <width>1440</width>
-                <height>1080</height>
+                <width>728</width>
+                <height>544</height>
                 <format>R8G8B8</format>
             </image>
             <clip>
@@ -438,6 +438,7 @@
 
     <plugin filename="libSampleSystem.so"
     name="sample_system::SampleSystem">
+    <update_rate>20</update_rate>
     </plugin>  
   </model>
 </sdf>
