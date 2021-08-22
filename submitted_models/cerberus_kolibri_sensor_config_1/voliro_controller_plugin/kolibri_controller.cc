@@ -16,14 +16,23 @@ void cmd_callback(const ignition::msgs::Twist &_msg){
   std::cout << "raw cmd: x" << _msg.linear().x() << "y: " << _msg.linear().y() << " z: " << _msg.linear().z() << "\n";
 }
 
-/*
-void odom_callback(const ignition::msgs::Pose &_msg){
+
+void odom_callback(const ignition::msgs::Pose_V &_msg){
+
+    if (_msg.pose_size() > 0) {
+        // Got TF
+        auto p = _msg.pose(0).position();
+        math::Vector3d v = math::Vector3d(p.x(), p.y(), p.z());
+        std::cout << " Pose: " << v << "\n"; 
+    //  math::Pose3d p = ignition::msgs::Convert(_msg);    
+        }
 //  target_linear = math::Vector3d(_msg.linear().x(),_msg.linear().y(),_msg.linear().z());
 //  target_angular = math::Vector3d(_msg.angular().x(),_msg.angular().y(),_msg.angular().z());
-  std::cout << " Pose: " << _msg << "\n";
-  Pose3d ignition::msgs::Convert(_msg)
+//  math::Pose3d p = ignition::msgs::Convert(_msg);
+ // std::cout << " Pose: " << p << "\n";
+
 }
-*/
+
 
 KolibriController::KolibriController() {
 }
@@ -91,11 +100,12 @@ void KolibriController::Configure(const Entity &_entity,
     ignerr << "Error subscribing to topic [" << "/kolibri/cmd_vel" << "]" << std::endl;
   }
 
-/*
+
   if (!this->_nh.Subscribe("/model/kolibri/pose", odom_callback)) {
     ignerr << "Error subscribing to topic [" << "/kolibri/pose" << "]" << std::endl;
+    exit(-1);
   }
-*/
+
   
   if (_sdf->HasElement("mass")) _mass = _sdf->Get<double>("mass");
   if (_sdf->HasElement("ixx")) _ixx = _sdf->Get<double>("ixx");
