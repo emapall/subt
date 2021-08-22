@@ -7,20 +7,16 @@ This specifications.md file is a description and proof of virtual model validati
 The Kolibri is a heavy autonomous omnidirectional tricopter for mapping with 6 cameras and an OS-0 lidar. The platform is a customized version of a Voliro - a novel third-party OMAV, that we customized with a state-of-the-art autonomy stack.
 
 ## Usage Instructions
+Install the SubT workspace according to https://github.com/osrf/subt/wiki/Catkin%20System%20Setup
+
 The vehicle can be launched with the following command:
 ```
-ign launch -v 4 src/subt/submitted_models/cerberus_m100_sensor_config_1/launch/m100_test.ign robotName:=m100 modelName:=CERBERUS_M100_SENSOR_CONFIG_1 localModel:=true
+ign launch -v 4 competition.ign circuit:=tunnel worldName:=tunnel_circuit_practice_01 robotName1:=kolibri robotConfig1:=CERBERUS_KOLIBRI_SENSOR_CONFIG_1 localModel:=true enableGroundTruth:=true
 ```
 The velocity of the robot can be controlled with following command:
 ```
-rostopic pub /m100/cmd_vel geometry_msgs/Twist "linear:
-  x: -0.1
-  y: 0.1
-  z: 0.1
-angular:
-  x: 0.0
-  y: 0.0
-  z: 0.1"
+rostopic pub -r 10 /kolibri/cmd_vel geometry_msgs/Twist  '{linear:  {x: 0.0, y: 0.0, z: 1.0}, angular: {x: 0.0,y: 0.0,z: 1.0}}'
+
 ```
 
 ## Usage Rights
