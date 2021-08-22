@@ -58,7 +58,7 @@ void KolibriController::PreUpdate(const UpdateInfo &_info, EntityComponentManage
   acc_angular.Max(-_max_angular_acc);
   std::cout << " target acc: " << acc_linear << " target ang acc: " << acc_angular << "\n";
     
-  auto u_linear = (acc_linear+math::Vector3d(0.,0.,9.82))*_mass;  // It's an OMAV that does not roll or pitch, resulting in very simple motion.
+  auto u_linear = (acc_linear+math::Vector3d(0.,0.,9.8))*_mass;  // It's an OMAV that does not roll or pitch, resulting in very simple motion.
   auto u_angular = acc_angular*math::Vector3d(_ixx,_iyy,_izz);
   std::cout << " u_linear: " << u_linear << " u_angular: " << u_angular << "\n";
   this->base_link.AddWorldWrench(_ecm_non_const, u_linear, u_angular);
@@ -70,6 +70,7 @@ void KolibriController::PostUpdate(const UpdateInfo &_info, const EntityComponen
   if(this->base_link.WorldPose(_ecm).has_value()){
     _linear_vel = this->base_link.WorldLinearVelocity(_ecm).value();
     _angular_vel = this->base_link.WorldAngularVelocity(_ecm).value();
+    std::cout << "Got vel: " << _linear_vel << " ang_vel: " << _angular_vel << "\n";
   }
 }
 

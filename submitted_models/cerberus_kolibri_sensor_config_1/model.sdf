@@ -438,7 +438,6 @@
 
     <plugin filename="libKolibriController.so"
     name="kolibri_controller::KolibriController">
-    <update_rate>20</update_rate>
     </plugin>  
   </model>
 </sdf>
